@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Stationery Store</string>
+    <string name="open">Stationery Store</string>
+    <string name="close">Stationery Store</string>
 </resources>
