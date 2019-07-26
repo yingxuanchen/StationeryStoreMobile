@@ -6,63 +6,84 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:gravity="center"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="#FFF9C4">
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:weightSum="6"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="40dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="E-mail Address: " />
+            <ImageView
+                android:layout_width="400px"
+                android:layout_height="350px"
+                android:layout_gravity="center"
+                android:src="@drawable/snoopy"/>
 
             <EditText
-                android:id="@+id/emailView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:id="@+id/et_username"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:hint="User ID"
+                android:inputType="textCapWords"/>
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:hint="Password"
+                android:inputType="textPassword"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:foreground="@+id/btn_Login"
+            android:orientation="horizontal"
+            android:layout_below="@+id/linearLayout2">
+
+            <Button
+                android:id="@+id/btn_Login"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/button"
+                android:text="Login"
+                android:layout_marginHorizontal="130dp"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:weightSum="4"
+            android:layout_marginVertical="50dp"
+            android:layout_below="@+id/linearLayout1">
 
-            <TextView
-                android:layout_width="100dp"
+            <ProgressBar
+                android:id="@+id/pbar"
+                style="?android:attr/progressBarStyleLargeInverse"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password: " />
-
-            <EditText
-                android:id="@+id/pwdView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:layout_marginHorizontal="170dp"/>
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/loginBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:layout_gravity="end"/>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
