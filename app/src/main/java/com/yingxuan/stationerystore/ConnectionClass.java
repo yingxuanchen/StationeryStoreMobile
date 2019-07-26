@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class ConnectionClass {
 
     private static String ip = "172.17.99.122";
-    private static String database = "MyStationeryStore";
+    private static String database = "StationeryStore";
     private static String username = "cyx";
     private static String password = "password";
 

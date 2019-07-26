@@ -6,100 +6,106 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.yingxuan.stationerystore.ConnectionClass;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.lang.ref.WeakReference;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ConnectionClass cClass = new ConnectionClass();
-        EditText edtUID = findViewById(R.id.et_username);
-        EditText edtPw = findViewById(R.id.et_password);
         Button btnlogin = findViewById(R.id.btn_Login);
         ProgressBar pgbar = findViewById(R.id.pbar);
         pgbar.setVisibility(View.GONE);
 
-        btnlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DoLogin doLogin = new DoLogin();
-                doLogin.execute("");
-            }
-        });
+        btnlogin.setOnClickListener(this);
     }
 
-    public class DoLogin extends AsyncTask<String,String,String> {
-        String z = "";
-        Boolean isSuccess = false;
+    @Override
+    public void onClick(View view) {
+        try {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        EditText edtUID = findViewById(R.id.et_email);
+        EditText edtPw = findViewById(R.id.et_password);
+        String email = edtUID.getText().toString();
+        String pwd = edtPw.getText().toString();
 
-        String userid = edtUID.getText().toString();
-        String password = edtPW.getText().toString();
+        new DoLogin(MainActivity.this).execute(email, pwd);
+    }
 
+    public class DoLogin extends AsyncTask<String,Void,String> {
+        private WeakReference<MainActivity> parent = null;
 
-        @Override
-        protected void onPreExecute() {
-            pgbar.setVisibility(View.VISIBLE);
+        public DoLogin(MainActivity parent) {
+            this.parent = new WeakReference<>(parent);
         }
 
         @Override
-        protected void onPostExecute(String r) {
-            pgbar.setVisibility(View.GONE);
-            Toast.makeText(MainActivity.this, r, Toast.LENGTH_SHORT).show();
-
-            if (isSuccess) {
-                Toast.makeText(MainActivity.this, r, Toast.LENGTH_SHORT).show();
-            }
-
+        protected void onPreExecute() {
+            this.parent.get().findViewById(R.id.pbar).setVisibility(View.VISIBLE);
         }
 
         @Override
         protected String doInBackground(String... params) {
-            if (userid.trim().equals("") || password.trim().equals(""))
-                z = "Please enter User Id and Password";
+            String msg = "";
+            if (params[0].trim().equals("") || params[1].trim().equals(""))
+                msg = "Please enter Email and Password.";
             else {
                 try {
-                    Connection con = cClass.Connect();
+                    Connection con = ConnectionClass.getConn();
                     if (con == null) {
-                        z = "Error in connection with SQL server";
+                        msg = "Error in connection with server";
                     } else {
-                        String query = "select * from pathologic_app_users where username='" + userid + "' and password='" + password + "'";
+                        String query = "SELECT * FROM Employee WHERE email='" + params[0].trim() + "' AND pwd='" + params[1].trim() + "'";
                         Statement stmt = con.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
 
-                        if (rs.next()) {
-
-                            z = "Login successfull";
-                            isSuccess = true;
-                        } else {
-                            z = "Invalid Credentials";
-                            isSuccess = false;
-                        }
-
+                        if (!rs.next())
+                            msg = "Email or Password is wrong.";
+                        else
+                            msg = "successful";
                     }
-                } catch (Exception ex) {
-                    isSuccess = false;
-                    z = "Exceptions";
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
-            return z;
+            return msg;
+        }
+
+        @Override
+        protected void onPostExecute (String msg) {
+            MainActivity parent = this.parent.get();
+            ProgressBar pgbar = parent.findViewById(R.id.pbar);
+            pgbar.setVisibility(View.GONE);
+
+            if (msg != "") {
+                TextView msgView = parent.findViewById(R.id.errorMsg);
+                msgView.setText(msg);
+            }
         }
     }
 }
