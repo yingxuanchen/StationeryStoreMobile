@@ -55,6 +55,12 @@ public class FirstActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id)
                 {
+                    case R.id.approve:
+                        break;
+                    case R.id.rep:
+                        break;
+                    case R.id.delegate:
+                        break;
                     case R.id.retrieve:
                         break;
                     case R.id.disbursement:

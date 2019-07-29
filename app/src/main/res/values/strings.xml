@@ -1,8 +1,18 @@
 <resources>
     <string name="app_name">Stationery Store</string>
-    <string name="open">Stationery Store</string>
-    <string name="close">Stationery Store</string>
-    //approvepage
+    <string name="open">Open Drawer</string>
+    <string name="close">Close Drawer</string>
+
+    <!--menu items-->
+    <string name="retrieval">Retrieval Form</string>
+    <string name="disbursement">Disbursement List</string>
+    <string name="adjustment">Inventory Adjustment</string>
+    <string name="approve">Approve Requisitions</string>
+    <string name="representative">Assign Representative</string>
+    <string name="delegation">Delegation</string>
+    <string name="logout">Logout</string>
+
+    <!--approve page-->
     <string name="req_id">Requisition ID: </string>
     <string name="stats">Status: </string>
     <string name="dos">Date of Submission: </string>
