@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/approve"
+        android:title="@string/approve" />
+    <item
+        android:id="@+id/rep"
+        android:title="@string/representative" />
+    <item
+        android:id="@+id/delegate"
+        android:title="@string/delegation" />
+    <item
+        android:id="@+id/logout"
+        android:title="@string/logout" />
+
+</menu>

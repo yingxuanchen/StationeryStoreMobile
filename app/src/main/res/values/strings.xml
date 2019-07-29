@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">Stationery Store</string>
-    <string name="open">Stationery Store</string>
-    <string name="close">Stationery Store</string>
-    <string name="action_settings">Settings</string>
+    <string name="open">Open Drawer</string>
+    <string name="close">Close Drawer</string>
+    <string name="retrieval">Retrieval Form</string>
+    <string name="disbursement">Disbursement List</string>
+    <string name="adjustment">Inventory Adjustment</string>
+    <string name="logout">Logout</string>
+    <string name="delegation">Delegation</string>
+    <string name="representative">Assign Representative</string>
+    <string name="approve">Approve Requisitions</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--<string name="action_settings">Settings</string>-->
 </resources>

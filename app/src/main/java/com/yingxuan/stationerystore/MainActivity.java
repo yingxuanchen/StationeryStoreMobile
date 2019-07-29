@@ -1,25 +1,17 @@
 package com.yingxuan.stationerystore;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.yingxuan.stationerystore.ConnectionClass;
 
-import com.google.android.material.navigation.NavigationView;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.lang.ref.WeakReference;
 import java.sql.Connection;
@@ -42,13 +34,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        // hide keyboard after pressing login
         try {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        // check for user in database
         EditText edtUID = findViewById(R.id.et_email);
         EditText edtPw = findViewById(R.id.et_password);
         String email = edtUID.getText().toString();
@@ -58,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public class DoLogin extends AsyncTask<String,Void,String> {
-        private WeakReference<MainActivity> parent = null;
+        private WeakReference<MainActivity> parent;
 
         public DoLogin(MainActivity parent) {
             this.parent = new WeakReference<>(parent);
@@ -72,22 +66,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         protected String doInBackground(String... params) {
             String msg = "";
-            if (params[0].trim().equals("") || params[1].trim().equals(""))
-                msg = "Please enter Email and Password.";
+            String email = params[0].trim();
+            String pwd = params[1].trim();
+
+            if (email.equals("") || pwd.equals(""))
+                msg = "Please enter Email and Password";
             else {
                 try {
                     Connection con = ConnectionClass.getConn();
                     if (con == null) {
                         msg = "Error in connection with server";
                     } else {
-                        String query = "SELECT * FROM Employee WHERE email='" + params[0].trim() + "' AND pwd='" + params[1].trim() + "'";
-                        Statement stmt = con.createStatement();
-                        ResultSet rs = stmt.executeQuery(query);
+                        String query1 = "SELECT * FROM Employee WHERE email='" + email + "' AND pwd='" + pwd + "'";
+                        String query2 = "SELECT * FROM StoreStaff WHERE email='" + email + "' AND pwd='" + pwd + "'";
+                        Statement stmt1 = con.createStatement();
+                        ResultSet rs1 = stmt1.executeQuery(query1);
+                        Statement stmt2 = con.createStatement();
+                        ResultSet rs2 = stmt2.executeQuery(query2);
 
-                        if (!rs.next())
-                            msg = "Email or Password is wrong.";
-                        else
-                            msg = "successful";
+                        if (rs1.next()) {
+                            User.employeeId = rs1.getString("id");
+                            User.name = rs1.getString("name");
+                            User.role = rs1.getString("role");
+                            // Department Employee & Rep & TempHead are not authorised to use mobile app
+                            if (User.role.equals("Employee") || User.role.equals("Rep") || User.role.equals("TempHead"))
+                                msg = "You are not authorised to use mobile app";
+                        } else if (rs2.next()) {
+                            User.employeeId = rs2.getString("id");
+                            User.name = rs2.getString("name");
+                            User.role = rs2.getString("role");
+                            // change role name of store clerk so that can differentiate with normal employee
+                            if (User.role.equals("Employee"))
+                                User.role = "Clerk";
+                        } else {
+                            msg = "Email or Password is wrong";
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -102,9 +115,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ProgressBar pgbar = parent.findViewById(R.id.pbar);
             pgbar.setVisibility(View.GONE);
 
+            // display error message
             if (msg != "") {
                 TextView msgView = parent.findViewById(R.id.errorMsg);
                 msgView.setText(msg);
+            }
+
+            // go to main page if role is authorised
+            switch (User.role) {
+                case "Head":
+                case "Clerk":
+                case "Supervisor":
+                case "Manager":
+                    Intent intent = new Intent(parent, FirstActivity.class);
+                    startActivity(intent);
+                    break;
             }
         }
     }
