@@ -10,9 +10,9 @@ import java.sql.SQLException;
 
 public class ConnectionClass {
 
-    private static String ip = "172.17.99.122";
+    private static String ip = "192.168.86.16";
     private static String database = "StationeryStore";
-    private static String username = "cyx";
+    private static String username = "root";
     private static String password = "password";
 
     @SuppressLint("NewApi")
@@ -30,10 +30,9 @@ public class ConnectionClass {
         catch (SQLException se)
         {
             Log.e("error here 1 : ", se.getMessage());
-        }
-        catch (ClassNotFoundException e)
+        } catch (ClassNotFoundException ce)
         {
-            Log.e("error here 2 : ", e.getMessage());
+            Log.e("error here 2 : ", ce.getMessage());
         }
         catch (Exception e)
         {

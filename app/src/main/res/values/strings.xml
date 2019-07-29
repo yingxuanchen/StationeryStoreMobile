@@ -1,17 +1,16 @@
 <resources>
     <string name="app_name">Stationery Store</string>
-    <string name="open">Open Drawer</string>
-    <string name="close">Close Drawer</string>
-    <string name="retrieval">Retrieval Form</string>
-    <string name="disbursement">Disbursement List</string>
-    <string name="adjustment">Inventory Adjustment</string>
-    <string name="logout">Logout</string>
-    <string name="delegation">Delegation</string>
-    <string name="representative">Assign Representative</string>
-    <string name="approve">Approve Requisitions</string>
+    <string name="open">Stationery Store</string>
+    <string name="close">Stationery Store</string>
+    //approvepage
+    <string name="req_id">Requisition ID: </string>
+    <string name="stats">Status: </string>
+    <string name="dos">Date of Submission: </string>
+    <string name="sub_by">Submitted By: </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ord_items">Ordered Items</string>
+    <string name="comments">Comments : </string>
 
-    <!--<string name="action_settings">Settings</string>-->
+    <string name="Reject"> Reject </string>
+    <string name="Accept"> Accept </string>
 </resources>

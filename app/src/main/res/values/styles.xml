@@ -8,4 +8,36 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="linearCenter">
+        <item name="android:weightSum">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_height">75dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="linearApprove_hori">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ApproveTV">
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:paddingHorizontal">10dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+    </style>
+
+    <style name="ApproveTS">
+        <item name="android:layout_weight">3</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
 </resources>

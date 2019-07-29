@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/TitleApprove"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        style="@style/linearApprove_hori">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Requisitions For Approval"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row1"
+        android:paddingTop="20dp"
+        style="@style/linearApprove_hori"
+        app:layout_constraintTop_toBottomOf="@+id/TitleApprove"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            style="@style/ApproveTV"
+            android:textColor="@color/black"
+            android:text="@string/req_id"></TextView>
+
+        <TextSwitcher
+            android:id="@+id/reqID"
+            style="@style/ApproveTS"
+            android:layout_height="wrap_content"></TextSwitcher>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row2"
+        style="@style/linearApprove_hori"
+        app:layout_constraintTop_toBottomOf="@+id/row1"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            style="@style/ApproveTV"
+            android:text="@string/stats"
+            android:textColor="@color/black"></TextView>
+
+        <TextSwitcher
+            android:id="@+id/reqStatus"
+            style="@style/ApproveTS"></TextSwitcher>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row3"
+        style="@style/linearApprove_hori"
+        app:layout_constraintTop_toBottomOf="@+id/row2"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            style="@style/ApproveTV"
+            android:text="Date of Submission: "
+            android:textColor="@color/black"></TextView>
+
+        <TextSwitcher
+            android:id="@+id/dos"
+            style="@style/ApproveTS"></TextSwitcher>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row4"
+        style="@style/linearApprove_hori"
+        app:layout_constraintTop_toBottomOf="@+id/row3"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            style="@style/ApproveTV"
+            android:text="Submitted By: "
+            android:textColor="@color/black"></TextView>
+
+        <TextSwitcher
+            android:id="@+id/sub_by"
+            style="@style/ApproveTS"></TextSwitcher>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/heading2"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/row4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textAlignment="textStart"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:paddingHorizontal="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ord_items"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/itemList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/heading2">
+
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/commentRow"
+        style="@style/linearApprove_hori"
+        app:layout_constraintBottom_toTopOf="@id/commentbox"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            style="@style/ApproveTV"
+            android:text="@string/comments"
+            android:textColor="@color/black"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/commentbox"
+        style="@style/linearApprove_hori"
+        app:layout_constraintBottom_toTopOf="@id/resp_btns"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/editextstyle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/resp_btns"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/rej_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:text="@string/Reject"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            android:paddingHorizontal="40dp"
+            android:layout_marginHorizontal="50dp" />
+
+        <Button
+            android:id="@+id/accp_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:text="@string/Accept"
+            android:textColor="@color/white"
+            android:background="@color/red"
+            android:paddingHorizontal="40dp"
+            android:layout_marginHorizontal="10dp" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
