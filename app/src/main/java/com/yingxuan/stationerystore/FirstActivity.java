@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -53,6 +56,11 @@ public class FirstActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
+
+                Fragment frag;
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction trans = fm.beginTransaction();
+
                 switch(id)
                 {
                     case R.id.approve:
@@ -62,6 +70,8 @@ public class FirstActivity extends AppCompatActivity {
                     case R.id.delegate:
                         break;
                     case R.id.retrieve:
+                        frag = new StoreRetrievalFragment();
+                        trans.replace(R.id.frag, frag);
                         break;
                     case R.id.disbursement:
                         break;
@@ -77,6 +87,10 @@ public class FirstActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                 }
+                trans.commit();
+
+                // close menu once something is selected
+                dl.closeDrawers();
                 return true;
             }
         });
