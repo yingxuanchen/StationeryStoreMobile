@@ -26,12 +26,12 @@
                 android:layout_width="210dp"
                 android:layout_height="170dp"
                 android:layout_gravity="center"
-                android:src="@drawable/snoopy"/>
+                android:src="@drawable/lu" />
 
             <EditText
                 android:id="@+id/et_email"
                 android:layout_width="fill_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="Email Address"
                 android:inputType="textEmailAddress" />
@@ -39,7 +39,7 @@
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="fill_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Password"
                 android:inputType="textPassword"/>
@@ -62,7 +62,7 @@
             <Button
                 android:id="@+id/btn_Login"
                 android:layout_width="150dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:backgroundTint="@color/button"
