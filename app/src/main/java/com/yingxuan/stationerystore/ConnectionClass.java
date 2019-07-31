@@ -10,9 +10,9 @@ import java.sql.SQLException;
 
 public class ConnectionClass {
 
-    private static String ip = "192.168.86.16";
+    private static String ip = "192.168.1.3";
     private static String database = "StationeryStore";
-    private static String username = "root";
+    private static String username = "cyx";
     private static String password = "password";
 
     @SuppressLint("NewApi")

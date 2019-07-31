@@ -30,14 +30,13 @@ public class FirstActivity extends AppCompatActivity {
 
         dl = findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
+        nv = findViewById(R.id.nv);
 
         dl.addDrawerListener(t);
         t.syncState();
 
         // true to show the user that selecting home will return one level up rather than to the top level of the app.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        nv = findViewById(R.id.nv);
 
         // set user's name on menu header
         View headerView =  nv.getHeaderView(0);
@@ -52,6 +51,23 @@ public class FirstActivity extends AppCompatActivity {
             case "Manager": nv.inflateMenu(R.menu.store_menu); break;
         }
 
+        // set first fragment to use for each role
+        Fragment frag;
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction trans = fm.beginTransaction();
+        switch(User.role) {
+            case "Head":
+                break;
+            case "Clerk":
+            case "Supervisor":
+            case "Manager":
+                frag = new StoreRetrievalFragment();
+                trans.replace(R.id.frag, frag);
+                break;
+        }
+        trans.commit();
+
+        // set the fragment to use for each menu item
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -61,8 +77,7 @@ public class FirstActivity extends AppCompatActivity {
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction trans = fm.beginTransaction();
 
-                switch(id)
-                {
+                switch(id) {
                     case R.id.approve:
                         break;
                     case R.id.rep:

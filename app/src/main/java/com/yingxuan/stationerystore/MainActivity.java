@@ -13,12 +13,19 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONObject;
+
 import java.lang.ref.WeakReference;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity
+        implements View.OnClickListener, AsyncToServer.IServerResponse {
+
+    ProgressBar pgbar;
+    // TextView for displaying error messages
+    TextView msgView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         Button btnlogin = findViewById(R.id.btn_Login);
-        ProgressBar pgbar = findViewById(R.id.pbar);
+        msgView = findViewById(R.id.errorMsg);
+        pgbar = findViewById(R.id.pbar);
         pgbar.setVisibility(View.GONE);
 
         btnlogin.setOnClickListener(this);
@@ -42,95 +50,87 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
 
-        // check for user in database
+        // clear error message
+        msgView.setText("");
+
+        // get user input of email and password
         EditText edtUID = findViewById(R.id.et_email);
         EditText edtPw = findViewById(R.id.et_password);
-        String email = edtUID.getText().toString();
-        String pwd = edtPw.getText().toString();
+        String email = edtUID.getText().toString().trim();
+        String password = edtPw.getText().toString().trim();
 
-        new DoLogin(MainActivity.this).execute(email, pwd);
+        if (email.equals("") || password.equals(""))
+            msgView.setText("Please enter Email and Password");
+        else {
+            JSONObject data = new JSONObject();
+            try {
+                data.put("email",email);
+                data.put("password",password);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            Command cmd = new Command(this, "get","/Api/Login", data);
+
+            pgbar.setVisibility(View.VISIBLE);
+            new AsyncToServer().execute(cmd);
+        }
     }
 
-    public class DoLogin extends AsyncTask<String,Void,String> {
-        private WeakReference<MainActivity> parent;
+    @Override
+    public void onServerResponse(JSONObject jsonObj) {
+        pgbar.setVisibility(View.GONE);
 
-        public DoLogin(MainActivity parent) {
-            this.parent = new WeakReference<>(parent);
-        }
+        if (jsonObj == null)
+            return;
 
-        @Override
-        protected void onPreExecute() {
-            this.parent.get().findViewById(R.id.pbar).setVisibility(View.VISIBLE);
-        }
+        try {
+            String status = jsonObj.getString("status");
 
-        @Override
-        protected String doInBackground(String... params) {
-            String msg = "";
-            String email = params[0].trim();
-            String pwd = params[1].trim();
+            if (status.equals("fail"))
+                msgView.setText("Email or Password is wrong");
 
-            if (email.equals("") || pwd.equals(""))
-                msg = "Please enter Email and Password";
-            else {
-                try {
-                    Connection con = ConnectionClass.getConn();
-                    if (con == null) {
-                        msg = "Error in connection with server";
+            else if (status.equals("ok")) {
+                if (jsonObj.optJSONObject("employee") != null) {
+                    JSONObject employee = jsonObj.getJSONObject("employee");
+
+                    if (employee.getString("Role").equals("Head")) {
+                        User.employeeId = employee.getString("Id");
+                        User.name = employee.getString("Name");
+                        User.role = employee.getString("Role");
                     } else {
-                        String query1 = "SELECT * FROM Employee WHERE email='" + email + "' AND pwd='" + pwd + "'";
-                        String query2 = "SELECT * FROM StoreStaff WHERE email='" + email + "' AND pwd='" + pwd + "'";
-                        Statement stmt1 = con.createStatement();
-                        ResultSet rs1 = stmt1.executeQuery(query1);
-                        Statement stmt2 = con.createStatement();
-                        ResultSet rs2 = stmt2.executeQuery(query2);
-
-                        if (rs1.next()) {
-                            User.employeeId = rs1.getString("id");
-                            User.name = rs1.getString("name");
-                            User.role = rs1.getString("role");
-                            // Department Employee & Rep & TempHead are not authorised to use mobile app
-                            if (User.role.equals("Employee") || User.role.equals("Rep") || User.role.equals("TempHead"))
-                                msg = "You are not authorised to use mobile app";
-                        } else if (rs2.next()) {
-                            User.employeeId = rs2.getString("id");
-                            User.name = rs2.getString("name");
-                            User.role = rs2.getString("role");
-                            // change role name of store clerk so that can differentiate with normal employee
-                            if (User.role.equals("Employee"))
-                                User.role = "Clerk";
-                        } else {
-                            msg = "Email or Password is wrong";
-                        }
+                        msgView.setText("You are not authorised to use this mobile app");
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                }
+
+                else {
+                    JSONObject storeStaff = jsonObj.getJSONObject("storeStaff");
+                    User.employeeId = storeStaff.getString("Id");
+                    User.name = storeStaff.getString("Name");
+                    User.role = storeStaff.getString("Role");
+
+                    // change role name of store clerk so that can differentiate with normal employee
+                    if (User.role.equals("Employee"))
+                        User.role = "Clerk";
                 }
             }
-            return msg;
+
+            else {
+                msgView.setText("Error in connection with server");
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @Override
-        protected void onPostExecute (String msg) {
-            MainActivity parent = this.parent.get();
-            ProgressBar pgbar = parent.findViewById(R.id.pbar);
-            pgbar.setVisibility(View.GONE);
-
-            // display error message
-            if (msg != "") {
-                TextView msgView = parent.findViewById(R.id.errorMsg);
-                msgView.setText(msg);
-            }
-
-            // go to main page if role is authorised
-            switch (User.role) {
-                case "Head":
-                case "Clerk":
-                case "Supervisor":
-                case "Manager":
-                    Intent intent = new Intent(parent, FirstActivity.class);
-                    startActivity(intent);
-                    break;
-            }
+        // go to main page if role is authorised
+        switch (User.role) {
+            case "Head":
+            case "Clerk":
+            case "Supervisor":
+            case "Manager":
+            Intent intent = new Intent(this, FirstActivity.class);
+            startActivity(intent);
+            break;
         }
     }
 }
