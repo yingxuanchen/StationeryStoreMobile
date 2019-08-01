@@ -24,6 +24,7 @@
     <string name="Reject"> Reject </string>
     <string name="Accept"> Approve </string>
 
+
     <!--delegate page-->
     <string name="delegate">Delegation</string>
     <string name="startD">Start Date: </string>
@@ -31,5 +32,20 @@
     <string name="Emp">Employee: </string>
     <string name="confirmDelg">Confirm Delegation</string>
     <string name="cancelDelg">Cancel Delegation</string>
+
+
+    <!--assign Rep page-->
+    <string name="assignRep">Assign Department Representative</string>
+    <string name="nowRep">Current Department Rep: </string>
+    <string name="newRep">Change Department Rep: </string>
+    <string name="save">Save</string>
+    <string name="cfmChg">Confirm Change</string>
+    <string name="RUSure">Are you sure?</string>
+    <string name="N">No</string>
+    <string name="Y">Yes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
