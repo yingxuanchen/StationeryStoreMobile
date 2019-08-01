@@ -2,7 +2,6 @@ package com.yingxuan.stationerystore;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -13,12 +12,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONObject;
+import com.yingxuan.stationerystore.connection.AsyncToServer;
+import com.yingxuan.stationerystore.connection.Command;
+import com.yingxuan.stationerystore.session.User;
 
-import java.lang.ref.WeakReference;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, AsyncToServer.IServerResponse {
@@ -97,6 +95,7 @@ public class MainActivity extends AppCompatActivity
                         User.employeeId = employee.getString("Id");
                         User.name = employee.getString("Name");
                         User.role = employee.getString("Role");
+                        User.departmentId = employee.getString("Department");
                     } else {
                         msgView.setText("You are not authorised to use this mobile app");
                     }

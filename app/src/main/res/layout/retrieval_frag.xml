@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StoreRetrievalFragment">
+    tools:context=".RetrievalFrag">
 
     <TextView
         android:id="@+id/title"
@@ -19,7 +19,7 @@
     <ScrollView
         android:id="@+id/table"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/title">
 
         <TableLayout

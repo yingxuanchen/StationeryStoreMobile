@@ -1,11 +1,11 @@
-package com.yingxuan.stationerystore;
+package com.yingxuan.stationerystore.model;
 
 public class Retrieval {
     private String itemId;
     private String description;
     private int binNumber;
     private String unit;
-    private int quantityNueeded;
+    private int quantityNeeded;
     private int quantityRetrieved;
 
     public String getItemId() {
@@ -40,12 +40,12 @@ public class Retrieval {
         this.unit = unit;
     }
 
-    public int getQuantityNueeded() {
-        return quantityNueeded;
+    public int getQuantityNeeded() {
+        return quantityNeeded;
     }
 
-    public void setQuantityNueeded(int quantityNueeded) {
-        this.quantityNueeded = quantityNueeded;
+    public void setQuantityNeeded(int quantityNueeded) {
+        this.quantityNeeded = quantityNeeded;
     }
 
     public int getQuantityRetrieved() {

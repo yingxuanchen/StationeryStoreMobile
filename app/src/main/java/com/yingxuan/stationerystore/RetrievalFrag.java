@@ -1,7 +1,6 @@
 package com.yingxuan.stationerystore;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,18 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.yingxuan.stationerystore.connection.AsyncToServer;
+import com.yingxuan.stationerystore.connection.Command;
+import com.yingxuan.stationerystore.model.Retrieval;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.ref.WeakReference;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreRetrievalFragment extends Fragment
+public class RetrievalFrag extends Fragment
         implements View.OnClickListener, AsyncToServer.IServerResponse {
 
     private Context appContext = null;
@@ -38,7 +36,7 @@ public class StoreRetrievalFragment extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_store_retrieval, container, false);
+        View view = inflater.inflate(R.layout.retrieval_frag, container, false);
 
         Button retrieveBtn = view.findViewById(R.id.retrieveBtn);
         retrieveBtn.setOnClickListener(this);
@@ -72,7 +70,7 @@ public class StoreRetrievalFragment extends Fragment
                     retrieval.setDescription(item.getString("Description"));
                     retrieval.setBinNumber(item.getInt("BinNumber"));
                     retrieval.setUnit(item.getString("Unit"));
-                    retrieval.setQuantityNueeded(item.getInt("QuantityNeeded"));
+                    retrieval.setQuantityNeeded(item.getInt("QuantityNeeded"));
 
                     retrievalForm.add(retrieval);
                 }
@@ -98,7 +96,7 @@ public class StoreRetrievalFragment extends Fragment
             TableRow tableRow = new TableRow(appContext);
 
             // Set new table row layout parameters
-            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
             tableRow.setLayoutParams(layoutParams);
 
             // Add a TextView in each column
@@ -115,11 +113,11 @@ public class StoreRetrievalFragment extends Fragment
             tableRow.addView(textView, 2);
 
             textView = new TextView(appContext);
-            textView.setText(Integer.toString(retrieval.getQuantityNueeded()));
+            textView.setText(Integer.toString(retrieval.getQuantityNeeded()));
             tableRow.addView(textView, 3);
 
             EditText editView = new EditText(appContext);
-            editView.setText(Integer.toString(retrieval.getQuantityNueeded()));
+            editView.setText(Integer.toString(retrieval.getQuantityNeeded()));
             tableRow.addView(editView, 4);
 
             tableLayout.addView(tableRow);

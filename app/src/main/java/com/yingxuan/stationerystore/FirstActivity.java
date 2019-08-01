@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.yingxuan.stationerystore.session.User;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -52,19 +52,20 @@ public class FirstActivity extends AppCompatActivity {
         }
 
         // set first fragment to use for each role
-        Fragment frag;
+        Fragment frag = null;
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction trans = fm.beginTransaction();
         switch(User.role) {
             case "Head":
+                frag = new ApproveFrag();
                 break;
             case "Clerk":
             case "Supervisor":
             case "Manager":
-                frag = new StoreRetrievalFragment();
-                trans.replace(R.id.frag, frag);
+                frag = new RetrievalFrag();
                 break;
         }
+        trans.replace(R.id.frag, frag);
         trans.commit();
 
         // set the fragment to use for each menu item
@@ -73,20 +74,22 @@ public class FirstActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
 
-                Fragment frag;
+                Fragment frag = null;
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction trans = fm.beginTransaction();
 
                 switch(id) {
                     case R.id.approve:
+                        frag = new ApproveFrag();
                         break;
                     case R.id.rep:
+                        frag = new RepFrag();
                         break;
                     case R.id.delegate:
+                        frag = new DelegateFrag();
                         break;
                     case R.id.retrieve:
-                        frag = new StoreRetrievalFragment();
-                        trans.replace(R.id.frag, frag);
+                        frag = new RetrievalFrag();
                         break;
                     case R.id.disbursement:
                         break;
@@ -96,12 +99,14 @@ public class FirstActivity extends AppCompatActivity {
                         User.name = "";
                         User.employeeId = "";
                         User.role = "";
+                        User.departmentId = "";
                         Intent intent = new Intent(FirstActivity.this, MainActivity.class);
                         // prevent user from being able to press back to access previous session
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         break;
                 }
+                trans.replace(R.id.frag, frag);
                 trans.commit();
 
                 // close menu once something is selected
