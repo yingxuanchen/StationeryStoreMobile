@@ -1,4 +1,4 @@
-package com.yingxuan.stationerystore;
+package com.yingxuan.stationerystore.department;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+
+import com.yingxuan.stationerystore.R;
 
 public class DelegateFrag extends Fragment {
 
