@@ -26,6 +26,7 @@ public class AsyncToServer extends AsyncTask<Command, Void, JSONObject> {
         try {
             URL url = new URL(cmd.endPt);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(10000);
 
             // send data
             if (cmd.data != null) {
