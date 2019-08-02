@@ -44,7 +44,7 @@ public class Retrieval {
         return quantityNeeded;
     }
 
-    public void setQuantityNeeded(int quantityNueeded) {
+    public void setQuantityNeeded(int quantityNeeded) {
         this.quantityNeeded = quantityNeeded;
     }
 

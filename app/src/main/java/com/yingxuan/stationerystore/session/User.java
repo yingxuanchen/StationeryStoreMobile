@@ -1,9 +1,9 @@
 package com.yingxuan.stationerystore.session;
 
 public class User {
-    public static String employeeId = "";
-    public static String name = "";
-    public static String role = "";
-    public static String departmentId = "";
-    public static String sessionId = "";
+    public static String employeeId;
+    public static String name;
+    public static String role;
+    public static String departmentId;
+    public static String sessionId;
 }

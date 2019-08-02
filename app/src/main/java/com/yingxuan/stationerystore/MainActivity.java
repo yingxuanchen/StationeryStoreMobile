@@ -30,6 +30,13 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // empty User strings from previous session in case never log out properly
+        User.employeeId = "";
+        User.name = "";
+        User.role = "";
+        User.departmentId = "";
+        User.sessionId = "";
+
         Button btnlogin = findViewById(R.id.btn_Login);
         msgView = findViewById(R.id.errorMsg);
         pgbar = findViewById(R.id.pbar);

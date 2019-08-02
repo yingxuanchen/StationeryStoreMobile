@@ -106,6 +106,7 @@ public class FirstActivity extends AppCompatActivity {
                         User.employeeId = "";
                         User.role = "";
                         User.departmentId = "";
+                        User.sessionId = "";
                         Intent intent = new Intent(FirstActivity.this, MainActivity.class);
                         // prevent user from being able to press back to access previous session
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
