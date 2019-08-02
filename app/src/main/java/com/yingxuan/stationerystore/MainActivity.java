@@ -85,8 +85,10 @@ public class MainActivity extends AppCompatActivity
     public void onServerResponse(JSONObject jsonObj) {
         pgbar.setVisibility(View.GONE);
 
-        if (jsonObj == null)
+        if (jsonObj == null) {
+            msgView.setText(R.string.error_no_connection);
             return;
+        }
 
         try {
             String status = jsonObj.getString("status");
@@ -120,10 +122,6 @@ public class MainActivity extends AppCompatActivity
                     if (User.role.equals("Employee"))
                         User.role = "Clerk";
                 }
-            }
-
-            else {
-                msgView.setText(R.string.error_no_connection);
             }
         }
         catch (Exception e) {

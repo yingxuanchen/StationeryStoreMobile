@@ -53,6 +53,7 @@ public class AsyncToServer extends AsyncTask<Command, Void, JSONObject> {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return jsonObj;
         }
 
         return jsonObj;
@@ -60,7 +61,7 @@ public class AsyncToServer extends AsyncTask<Command, Void, JSONObject> {
 
     @Override
     protected void onPostExecute(JSONObject jsonObj) {
-        if (jsonObj != null)
+//        if (jsonObj != null)
             this.callback.onServerResponse(jsonObj);
     }
 
