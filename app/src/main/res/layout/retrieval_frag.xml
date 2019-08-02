@@ -7,7 +7,7 @@
     tools:context=".store.RetrievalFrag">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/retrieve_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -17,10 +17,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/table"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/title">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/error_retrieve"
+        app:layout_constraintTop_toBottomOf="@id/retrieve_title">
 
         <TableLayout
             android:id="@+id/retrieve_table"
@@ -30,7 +30,6 @@
             android:stretchColumns="*">
 
             <TableRow
-                android:id="@+id/tableRow1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -59,13 +58,22 @@
 
     </ScrollView>
 
+    <TextView
+        android:id="@+id/error_retrieve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toTopOf="@id/retrieve_btn"
+        tools:text="@string/error_retrieve" />
+
     <Button
-        android:id="@+id/retrieveBtn"
+        android:id="@+id/retrieve_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="Retrieve"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/table" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

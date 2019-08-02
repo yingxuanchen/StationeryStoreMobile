@@ -2,6 +2,7 @@ package com.yingxuan.stationerystore.store;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.yingxuan.stationerystore.R;
 import com.yingxuan.stationerystore.connection.AsyncToServer;
@@ -21,6 +24,7 @@ import com.yingxuan.stationerystore.connection.Command;
 import com.yingxuan.stationerystore.model.Retrieval;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -39,7 +43,7 @@ public class RetrievalFrag extends Fragment
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.retrieval_frag, container, false);
 
-        Button retrieveBtn = view.findViewById(R.id.retrieveBtn);
+        Button retrieveBtn = view.findViewById(R.id.retrieve_btn);
         retrieveBtn.setOnClickListener(this);
 
         // get retrieval form from server
@@ -78,7 +82,16 @@ public class RetrievalFrag extends Fragment
             }
             else if (context.compareTo("set") == 0)
             {
-                //Todo
+                String status = jsonObj.getString("status");
+
+                // reload page if retrieve is successful
+                if (status.equals("ok")) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    FragmentTransaction trans = fm.beginTransaction();
+                    Fragment frag = new RetrievalFrag();
+                    trans.replace(R.id.frag, frag);
+                    trans.commit();
+                }
             }
         }
         catch (Exception e) {
@@ -90,9 +103,7 @@ public class RetrievalFrag extends Fragment
         // add items into TableLayout row by row
         TableLayout tableLayout = getView().findViewById(R.id.retrieve_table);
 
-        for (int i=0; i<retrievalForm.size(); i++) {
-            retrieval = retrievalForm.get(i);
-
+        for (Retrieval retrieval : retrievalForm) {
             // Create a new table row.
             TableRow tableRow = new TableRow(appContext);
 
@@ -118,6 +129,8 @@ public class RetrievalFrag extends Fragment
             tableRow.addView(textView, 3);
 
             EditText editView = new EditText(appContext);
+            editView.setTag(retrieval.getItemId());
+            editView.setInputType(InputType.TYPE_CLASS_NUMBER);
             editView.setText(Integer.toString(retrieval.getQuantityNeeded()));
             tableRow.addView(editView, 4);
 
@@ -125,8 +138,35 @@ public class RetrievalFrag extends Fragment
         }
     }
 
+    // get the quantity retrieved, convert list to JSONObject to send to server
     @Override
     public void onClick(View view) {
+        JSONObject data = new JSONObject();
+        JSONArray retrievals = new JSONArray();
 
+        try {
+            for (Retrieval retrieval : retrievalForm) {
+                EditText editView = view.getRootView().findViewWithTag(retrieval.getItemId());
+                int qty = Integer.parseInt(editView.getText().toString());
+
+                // display error message if quantity retrieved is invalid
+                if (qty<0 || qty>retrieval.getQuantityNeeded()) {
+                    TextView errorView = view.getRootView().findViewById(R.id.error_retrieve);
+                    errorView.setText(R.string.error_retrieve);
+                    return;
+                }
+
+                JSONObject r = new JSONObject();
+                r.put("ItemId", retrieval.getItemId());
+                r.put("QuantityRetrieved", qty);
+                retrievals.put(r);
+            }
+            data.put("retrievals", retrievals);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Command cmd = new Command(this, "set","/StoreRetrieval/Retrieve", data);
+        new AsyncToServer().execute(cmd);
     }
 }

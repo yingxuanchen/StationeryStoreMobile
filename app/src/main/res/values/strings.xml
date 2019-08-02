@@ -51,4 +51,7 @@
     <string name="error_unauthorised">You are not authorised to use this mobile app</string>
     <string name="error_no_connection">Error in connection with server</string>
 
+    <!--error message during retrieval-->
+    <string name="error_retrieve">There are invalid values entered for retrieved quantity</string>
+
 </resources>
