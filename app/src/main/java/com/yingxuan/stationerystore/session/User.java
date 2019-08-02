@@ -5,4 +5,5 @@ public class User {
     public static String name = "";
     public static String role = "";
     public static String departmentId = "";
+    public static String sessionId = "";
 }

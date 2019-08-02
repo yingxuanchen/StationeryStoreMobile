@@ -1,4 +1,4 @@
-package com.yingxuan.stationerystore;
+package com.yingxuan.stationerystore.store;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.yingxuan.stationerystore.R;
 import com.yingxuan.stationerystore.connection.AsyncToServer;
 import com.yingxuan.stationerystore.connection.Command;
 import com.yingxuan.stationerystore.model.Retrieval;
@@ -42,7 +43,7 @@ public class RetrievalFrag extends Fragment
         retrieveBtn.setOnClickListener(this);
 
         // get retrieval form from server
-        Command cmd = new Command(this, "get","/Api/GetRetrieval", null);
+        Command cmd = new Command(this, "get","/StoreRetrieval/GetRetrieval", null);
         new AsyncToServer().execute(cmd);
 
         return view;

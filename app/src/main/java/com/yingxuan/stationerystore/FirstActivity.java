@@ -15,7 +15,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.yingxuan.stationerystore.department.ApproveFrag;
+import com.yingxuan.stationerystore.department.DelegateFrag;
+import com.yingxuan.stationerystore.department.RepFrag;
 import com.yingxuan.stationerystore.session.User;
+import com.yingxuan.stationerystore.store.RetrievalFrag;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -92,8 +96,10 @@ public class FirstActivity extends AppCompatActivity {
                         frag = new RetrievalFrag();
                         break;
                     case R.id.disbursement:
+                        frag = new RetrievalFrag();
                         break;
                     case R.id.adjustment:
+                        frag = new RetrievalFrag();
                         break;
                     case R.id.logout:
                         User.name = "";

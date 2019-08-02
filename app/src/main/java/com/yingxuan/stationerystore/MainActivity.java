@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         String password = edtPw.getText().toString().trim();
 
         if (email.equals("") || password.equals(""))
-            msgView.setText("Please enter Email and Password");
+            msgView.setText(R.string.error_empty_inputs);
         else {
             JSONObject data = new JSONObject();
             try {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity
             } catch (Exception e){
                 e.printStackTrace();
             }
-            Command cmd = new Command(this, "get","/Api/Login", data);
+            Command cmd = new Command(this, "get","/Login/Index", data);
 
             pgbar.setVisibility(View.VISIBLE);
             new AsyncToServer().execute(cmd);
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
             String status = jsonObj.getString("status");
 
             if (status.equals("fail"))
-                msgView.setText("Email or Password is wrong");
+                msgView.setText(R.string.error_wrong_inputs);
 
             else if (status.equals("ok")) {
                 if (jsonObj.optJSONObject("employee") != null) {
@@ -96,8 +96,9 @@ public class MainActivity extends AppCompatActivity
                         User.name = employee.getString("Name");
                         User.role = employee.getString("Role");
                         User.departmentId = employee.getString("Department");
+                        User.sessionId = jsonObj.getString("sessionId");
                     } else {
-                        msgView.setText("You are not authorised to use this mobile app");
+                        msgView.setText(R.string.error_unauthorised);
                     }
                 }
 
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity
                     User.employeeId = storeStaff.getString("Id");
                     User.name = storeStaff.getString("Name");
                     User.role = storeStaff.getString("Role");
+                    User.sessionId = jsonObj.getString("sessionId");
 
                     // change role name of store clerk so that can differentiate with normal employee
                     if (User.role.equals("Employee"))
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             else {
-                msgView.setText("Error in connection with server");
+                msgView.setText(R.string.error_no_connection);
             }
         }
         catch (Exception e) {

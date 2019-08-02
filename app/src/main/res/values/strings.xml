@@ -43,9 +43,9 @@
     <string name="RUSure">Are you sure?</string>
     <string name="N">No</string>
     <string name="Y">Yes</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="error_empty_inputs">Please enter Email and Password</string>
+    <string name="error_wrong_inputs">Email or Password is wrong</string>
+    <string name="error_unauthorised">You are not authorised to use this mobile app</string>
+    <string name="error_no_connection">Error in connection with server</string>
 
 </resources>
