@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".store.AdjIndexFrag">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/adj_linear_layout">
+
+            <TextView
+                style="@style/adj_header"
+                android:text="Voucher No." />
+
+            <TextView
+                android:id="@+id/voucher_no"
+                style="@style/adj_item"
+                tools:text="c02ae249-1e13-414f-b377-865d3b6e7e98" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/adj_linear_layout">
+
+            <TextView
+                style="@style/adj_header"
+                android:text="Date Submitted" />
+
+            <TextView
+                android:id="@+id/date_submitted"
+                style="@style/adj_item"
+                tools:text="21/07/2019" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/adj_linear_layout">
+
+            <TextView
+                style="@style/adj_header"
+                android:text="Submitted By" />
+
+            <TextView
+                android:id="@+id/submitted_by"
+                style="@style/adj_item"
+                tools:text="Tan Yew Vei" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/adj_linear_layout">
+
+            <TextView
+                style="@style/adj_header"
+                android:text="Status" />
+
+            <TextView
+                android:id="@+id/status"
+                style="@style/adj_item"
+                tools:text="Pending Approval" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

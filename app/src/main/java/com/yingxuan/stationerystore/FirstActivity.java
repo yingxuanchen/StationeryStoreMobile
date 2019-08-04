@@ -19,6 +19,7 @@ import com.yingxuan.stationerystore.department.ApproveFrag;
 import com.yingxuan.stationerystore.department.DelegateFrag;
 import com.yingxuan.stationerystore.department.RepFrag;
 import com.yingxuan.stationerystore.session.User;
+import com.yingxuan.stationerystore.store.AdjIndexFrag;
 import com.yingxuan.stationerystore.store.RetrievalFrag;
 
 public class FirstActivity extends AppCompatActivity {
@@ -99,7 +100,7 @@ public class FirstActivity extends AppCompatActivity {
                         frag = new RetrievalFrag();
                         break;
                     case R.id.adjustment:
-                        frag = new RetrievalFrag();
+                        frag = new AdjIndexFrag();
                         break;
                     case R.id.logout:
                         User.name = "";
@@ -114,6 +115,7 @@ public class FirstActivity extends AppCompatActivity {
                         break;
                 }
                 trans.replace(R.id.frag, frag);
+                trans.addToBackStack(null);
                 trans.commit();
 
                 // close menu once something is selected

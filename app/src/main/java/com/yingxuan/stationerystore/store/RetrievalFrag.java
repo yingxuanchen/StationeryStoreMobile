@@ -33,15 +33,17 @@ import java.util.List;
 public class RetrievalFrag extends Fragment
         implements View.OnClickListener, AsyncToServer.IServerResponse {
 
-    private Context appContext = null;
     private List<Retrieval> retrievalForm;
-    private Retrieval retrieval;
+    private TextView errorView;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.retrieval_frag, container, false);
+
+        errorView = view.findViewById(R.id.error_retrieve);
+        errorView.setVisibility(View.GONE);
 
         Button retrieveBtn = view.findViewById(R.id.retrieve_btn);
         retrieveBtn.setOnClickListener(this);
@@ -70,7 +72,7 @@ public class RetrievalFrag extends Fragment
                 for (int i=0; i<itemArray.length(); i++) {
                     JSONObject item = itemArray.getJSONObject(i);
 
-                    retrieval = new Retrieval();
+                    Retrieval retrieval = new Retrieval();
                     retrieval.setItemId(item.getString("ItemId"));
                     retrieval.setDescription(item.getString("Description"));
                     retrieval.setBinNumber(item.getInt("BinNumber"));
@@ -98,7 +100,7 @@ public class RetrievalFrag extends Fragment
             e.printStackTrace();
         }
 
-        appContext = getActivity().getApplicationContext();
+        Context appContext = getActivity().getApplicationContext();
 
         // add items into TableLayout row by row
         TableLayout tableLayout = getView().findViewById(R.id.retrieve_table);
@@ -151,8 +153,7 @@ public class RetrievalFrag extends Fragment
 
                 // display error message if quantity retrieved is invalid
                 if (qty<0 || qty>retrieval.getQuantityNeeded()) {
-                    TextView errorView = view.getRootView().findViewById(R.id.error_retrieve);
-                    errorView.setText(R.string.error_retrieve);
+                    errorView.setVisibility(View.VISIBLE);
                     return;
                 }
 

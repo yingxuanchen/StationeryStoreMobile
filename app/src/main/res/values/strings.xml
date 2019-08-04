@@ -54,4 +54,10 @@
     <!--error message during retrieval-->
     <string name="error_retrieve">There are invalid values entered for retrieved quantity</string>
 
+    <!--error messages during adjustment-->
+    <string name="error_adj_qty_zero">Quantity cannot be 0</string>
+    <string name="error_adj_no_reason">Reason cannot be empty</string>
+    <string name="error_adj_no_type">Please select the type of adjustment</string>
+    <string name="error_adj_qty_empty">Quantity cannot be empty</string>
+
 </resources>

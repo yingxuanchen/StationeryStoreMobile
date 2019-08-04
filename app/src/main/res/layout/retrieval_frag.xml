@@ -10,11 +10,12 @@
         android:id="@+id/retrieve_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:text="@string/retrieval"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="8dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -65,13 +66,13 @@
         android:gravity="center"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintBottom_toTopOf="@id/retrieve_btn"
-        tools:text="@string/error_retrieve" />
+        android:text="@string/error_retrieve" />
 
     <Button
         android:id="@+id/retrieve_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         android:text="Retrieve"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

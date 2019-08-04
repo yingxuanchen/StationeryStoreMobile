@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".store.AdjDetailsFrag">
+
+    <TextView
+        android:id="@+id/adj_details_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Inventory Adjustment Voucher"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/adj_details_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/adj_details_title">
+
+        <LinearLayout style="@style/adj_linear_layout">
+
+            <TextView
+                style="@style/adj_header"
+                android:text="Voucher No. :" />
+
+            <TextView
+                android:id="@+id/voucher_no"
+                style="@style/adj_item"
+                tools:text="c02ae249-1e13-414f-b377-865d3b6e7e98" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/adj_linear_layout">
+
+            <TextView
+                style="@style/adj_header"
+                android:text="Date Submitted :" />
+
+            <TextView
+                android:id="@+id/date_submitted"
+                style="@style/adj_item"
+                tools:text="21/07/2019" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/adj_linear_layout">
+
+            <TextView
+                style="@style/adj_header"
+                android:text="Submitted By :" />
+
+            <TextView
+                android:id="@+id/submitted_by"
+                style="@style/adj_item"
+                tools:text="Tan Yew Vei" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/adj_linear_layout">
+
+            <TextView
+                style="@style/adj_header"
+                android:text="Total Value :" />
+
+            <TextView
+                android:id="@+id/total_value"
+                style="@style/adj_item"
+                tools:text="$ 50" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/adj_linear_layout">
+
+            <TextView
+                style="@style/adj_header"
+                android:text="Status :" />
+
+            <TextView
+                android:id="@+id/status"
+                style="@style/adj_item"
+                tools:text="Pending Approval" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/adj_details_summary">
+
+        <TableLayout
+            android:id="@+id/adj_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/retrieval"
+                    android:text="Item Code" />
+
+                <TextView
+                    style="@style/retrieval"
+                    android:text="Description" />
+
+                <TextView
+                    style="@style/retrieval"
+                    android:text="Quantity" />
+
+                <TextView
+                    style="@style/retrieval"
+                    android:text="Reason" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
