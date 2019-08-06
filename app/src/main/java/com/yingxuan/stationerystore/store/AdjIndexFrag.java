@@ -81,7 +81,7 @@ public class AdjIndexFrag extends Fragment
                 String id = v.getString("Id");
                 String name = v.getString("EmployeeName");
                 String status = v.getString("Status");
-                int totalValue = v.getInt("TotalValue");
+                double totalValue = v.getDouble("TotalValue");
 
                 String date = dates.getString(i);
 

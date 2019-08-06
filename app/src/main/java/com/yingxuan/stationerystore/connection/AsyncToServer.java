@@ -22,11 +22,12 @@ public class AsyncToServer extends AsyncTask<Command, Void, JSONObject> {
 
         JSONObject jsonObj = null;
         StringBuilder response = new StringBuilder();
+        HttpURLConnection conn = null;
 
         try {
             URL url = new URL(cmd.endPt);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setConnectTimeout(10000);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(20000);
 
             // send data
             if (cmd.data != null) {
@@ -55,6 +56,8 @@ public class AsyncToServer extends AsyncTask<Command, Void, JSONObject> {
         } catch (Exception e) {
             e.printStackTrace();
             return jsonObj;
+        } finally {
+            conn.disconnect();
         }
 
         return jsonObj;

@@ -60,4 +60,15 @@
     <string name="error_adj_no_type">Please select the type of adjustment</string>
     <string name="error_adj_qty_empty">Quantity cannot be empty</string>
 
+    <!--alert dialog titles and messages-->
+    <string name="dialog_retrieve_title">Retrieve Items</string>
+    <string name="dialog_retrieve_msg">
+        Confirm retrieval of items from warehouse? Disbursement lists will be generated.
+    </string>
+    <string name="dialog_adj_title">Submit Adjustment Voucher</string>
+    <string name="dialog_adj_msg">Confirm submission of adjustment voucher?</string>
+
+    <!--toast messages when retrieve and adjustment voucher submitted-->
+    <string name="toast_adj">Adjustment voucher submitted successfully!</string>
+    <string name="toast_retrieve">Retrieve successful.\nDisbursement lists have been generated.</string>
 </resources>

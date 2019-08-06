@@ -11,9 +11,9 @@ public class Adjustment extends HashMap<String, Object> {
     private String dateString;
     private String submittedBy;
     private String status;
-    private int totalValue;
+    private double totalValue;
 
-    public Adjustment(String id, String date, String submittedBy, String status, int totalValue) {
+    public Adjustment(String id, String date, String submittedBy, String status, double totalValue) {
         Date dateSubmitted = null;
         String dateString = "";
         try {
@@ -78,11 +78,11 @@ public class Adjustment extends HashMap<String, Object> {
         this.status = status;
     }
 
-    public int getTotalValue() {
+    public double getTotalValue() {
         return totalValue;
     }
 
-    public void setTotalValue(int totalValue) {
+    public void setTotalValue(double totalValue) {
         this.totalValue = totalValue;
     }
 }

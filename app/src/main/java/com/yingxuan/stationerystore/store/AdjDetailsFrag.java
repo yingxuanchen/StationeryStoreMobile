@@ -55,7 +55,7 @@ public class AdjDetailsFrag extends Fragment implements AsyncToServer.IServerRes
         textView = view.findViewById(R.id.submitted_by);
         textView.setText(adj.getSubmittedBy());
         textView = view.findViewById(R.id.total_value);
-        String totalValue = "$" + Math.abs(adj.getTotalValue());
+        String totalValue = "$" + String.format("%.2f", Math.abs(adj.getTotalValue()));
         textView.setText(totalValue);
         textView = view.findViewById(R.id.status);
         textView.setText(adj.getStatus());
@@ -109,7 +109,9 @@ public class AdjDetailsFrag extends Fragment implements AsyncToServer.IServerRes
             TableRow tableRow = new TableRow(appContext);
 
             // Set new table row layout parameters
-            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
+            TableLayout.LayoutParams layoutParams = new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(0,24,0,24);
             tableRow.setLayoutParams(layoutParams);
 
             // Add a TextView in each column

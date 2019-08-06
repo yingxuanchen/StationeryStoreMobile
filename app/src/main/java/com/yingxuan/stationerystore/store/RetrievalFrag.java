@@ -1,16 +1,20 @@
 package com.yingxuan.stationerystore.store;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +25,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.yingxuan.stationerystore.R;
 import com.yingxuan.stationerystore.connection.AsyncToServer;
 import com.yingxuan.stationerystore.connection.Command;
+import com.yingxuan.stationerystore.model.AdjustmentDetails;
 import com.yingxuan.stationerystore.model.Retrieval;
 
 import org.json.JSONArray;
@@ -33,8 +38,11 @@ import java.util.List;
 public class RetrievalFrag extends Fragment
         implements View.OnClickListener, AsyncToServer.IServerResponse {
 
-    private List<Retrieval> retrievalForm;
+    private List<Retrieval> retrievals;
     private TextView errorView;
+    private boolean flag = false;
+    private ArrayList<AdjustmentDetails> adjDetails;
+    private JSONArray retrievalArray;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -66,8 +74,8 @@ public class RetrievalFrag extends Fragment
             if (context.compareTo("get") == 0)
             {
                 // Convert JSON to an ArrayList of retrieval items
-                retrievalForm = new ArrayList<Retrieval>();
-                JSONArray itemArray = jsonObj.getJSONArray("retrievalForm");
+                retrievals = new ArrayList<Retrieval>();
+                JSONArray itemArray = jsonObj.getJSONArray("retrievals");
 
                 for (int i=0; i<itemArray.length(); i++) {
                     JSONObject item = itemArray.getJSONObject(i);
@@ -79,20 +87,38 @@ public class RetrievalFrag extends Fragment
                     retrieval.setUnit(item.getString("Unit"));
                     retrieval.setQuantityNeeded(item.getInt("QuantityNeeded"));
 
-                    retrievalForm.add(retrieval);
+                    retrievals.add(retrieval);
                 }
             }
             else if (context.compareTo("set") == 0)
             {
                 String status = jsonObj.getString("status");
 
-                // reload page if retrieve is successful
                 if (status.equals("ok")) {
-                    FragmentManager fm = getActivity().getSupportFragmentManager();
-                    FragmentTransaction trans = fm.beginTransaction();
-                    Fragment frag = new RetrievalFrag();
-                    trans.replace(R.id.frag, frag);
-                    trans.commit();
+                    Toast.makeText(getContext(), R.string.toast_retrieve,
+                            Toast.LENGTH_LONG).show();
+
+                    // go to create new adjustment voucher page if any quantity retrieved is less than needed
+                    if (flag) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("adjDetails", adjDetails);
+                        Fragment frag = new AdjAutoFrag();
+                        frag.setArguments(bundle);
+
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        FragmentTransaction trans = fm.beginTransaction();
+                        trans.replace(R.id.frag, frag);
+                        trans.addToBackStack(null);
+                        trans.commit();
+                    }
+                    // TODO: go to disbursement page if retrieve is successful and no adjustment voucher needed
+                    else {
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        FragmentTransaction trans = fm.beginTransaction();
+                        Fragment frag = new RetrievalFrag();
+                        trans.replace(R.id.frag, frag);
+                        trans.commit();
+                    }
                 }
             }
         }
@@ -105,7 +131,7 @@ public class RetrievalFrag extends Fragment
         // add items into TableLayout row by row
         TableLayout tableLayout = getView().findViewById(R.id.retrieve_table);
 
-        for (Retrieval retrieval : retrievalForm) {
+        for (Retrieval retrieval : retrievals) {
             // Create a new table row.
             TableRow tableRow = new TableRow(appContext);
 
@@ -140,14 +166,22 @@ public class RetrievalFrag extends Fragment
         }
     }
 
-    // get the quantity retrieved, convert list to JSONObject to send to server
+    // get the quantity retrieved, convert list to JSONObject
     @Override
     public void onClick(View view) {
-        JSONObject data = new JSONObject();
-        JSONArray retrievals = new JSONArray();
+        // hide keyboard after pressing retrieve
+        try {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        adjDetails = new ArrayList<AdjustmentDetails>();
+        retrievalArray = new JSONArray();
 
         try {
-            for (Retrieval retrieval : retrievalForm) {
+            for (Retrieval retrieval : retrievals) {
                 EditText editView = view.getRootView().findViewWithTag(retrieval.getItemId());
                 int qty = Integer.parseInt(editView.getText().toString());
 
@@ -157,16 +191,56 @@ public class RetrievalFrag extends Fragment
                     return;
                 }
 
+                // add to list of adjustments if quantity retrieved is less than needed
+                if (qty<retrieval.getQuantityNeeded()) {
+                    flag = true;
+
+                    AdjustmentDetails adj = new AdjustmentDetails();
+                    adj.setItemId(retrieval.getItemId());
+                    adj.setDescription(retrieval.getDescription());
+                    adj.setQtyAdjusted(-(retrieval.getQuantityNeeded()-qty));
+
+                    adjDetails.add(adj);
+                }
+
                 JSONObject r = new JSONObject();
                 r.put("ItemId", retrieval.getItemId());
                 r.put("QuantityRetrieved", qty);
-                retrievals.put(r);
+                retrievalArray.put(r);
             }
-            data.put("retrievals", retrievals);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        // dialog alert for user to confirm
+        new AlertDialog.Builder(getContext())
+                .setTitle(R.string.dialog_retrieve_title)
+                .setMessage(R.string.dialog_retrieve_msg)
+                .setPositiveButton(android.R.string.yes,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                retrieve();
+                            }
+                        })
+                .setNegativeButton(android.R.string.no,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    // convert list to JSONObject to send to server
+    private void retrieve() {
+        JSONObject data = new JSONObject();
+        try {
+            data.put("retrievals", retrievalArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         Command cmd = new Command(this, "set","/StoreRetrieval/Retrieve", data);
         new AsyncToServer().execute(cmd);
     }
