@@ -30,8 +30,8 @@
     <string name="startD">Start Date: </string>
     <string name="endD">End Date: </string>
     <string name="Emp">Employee: </string>
-    <string name="confirmDelg">Confirm Delegation</string>
-    <string name="cancelDelg">Cancel Delegation</string>
+    <string name="confirmDel">Confirm Delegation</string>
+    <string name="cancelDel">Cancel Delegation</string>
 
 
     <!--assign Rep page-->

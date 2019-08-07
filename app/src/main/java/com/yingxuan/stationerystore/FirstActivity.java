@@ -15,14 +15,24 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.yingxuan.stationerystore.connection.AsyncToServer;
+import com.yingxuan.stationerystore.connection.Command;
 import com.yingxuan.stationerystore.department.ApproveIndexFrag;
+import com.yingxuan.stationerystore.department.DelegateCancelFrag;
 import com.yingxuan.stationerystore.department.DelegateFrag;
 import com.yingxuan.stationerystore.department.RepFrag;
+import com.yingxuan.stationerystore.model.Retrieval;
 import com.yingxuan.stationerystore.session.User;
 import com.yingxuan.stationerystore.store.AdjIndexFrag;
 import com.yingxuan.stationerystore.store.RetrievalFrag;
 
-public class FirstActivity extends AppCompatActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+public class FirstActivity extends AppCompatActivity implements AsyncToServer.IServerResponse {
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
@@ -79,6 +89,9 @@ public class FirstActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
 
+                // close menu once something is selected
+                dl.closeDrawers();
+
                 Fragment frag = null;
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction trans = fm.beginTransaction();
@@ -91,8 +104,8 @@ public class FirstActivity extends AppCompatActivity {
                         frag = new RepFrag();
                         break;
                     case R.id.delegate:
-                        frag = new DelegateFrag();
-                        break;
+                        checkDelegation();
+                        return true;
                     case R.id.retrieve:
                         frag = new RetrievalFrag();
                         break;
@@ -118,8 +131,6 @@ public class FirstActivity extends AppCompatActivity {
                 trans.addToBackStack(null);
                 trans.commit();
 
-                // close menu once something is selected
-                dl.closeDrawers();
                 return true;
             }
         });
@@ -130,5 +141,40 @@ public class FirstActivity extends AppCompatActivity {
         if(t.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
+    }
+
+    public void checkDelegation() {
+        Command cmd = new Command(this, "checkDelegation","/DeptDelegation/Check", null);
+        new AsyncToServer().execute(cmd);
+    }
+
+    @Override
+    public void onServerResponse(JSONObject jsonObj) {
+        if (jsonObj == null)
+            return;
+
+        try {
+            String context = jsonObj.getString("context");
+
+            // use different Fragment depending on whether there is existing delegation
+            if (context.compareTo("checkDelegation") == 0)
+            {
+                Fragment frag = null;
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction trans = fm.beginTransaction();
+
+                String delegationStatus = jsonObj.getString("delegation");
+                if (delegationStatus.equals("No Delegation"))
+                    frag = new DelegateFrag();
+                else if (delegationStatus.equals("Delegated"))
+                    frag = new DelegateCancelFrag();
+
+                trans.replace(R.id.frag, frag);
+                trans.addToBackStack(null);
+                trans.commit();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
