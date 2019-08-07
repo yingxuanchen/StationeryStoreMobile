@@ -2,6 +2,8 @@ package com.yingxuan.stationerystore.connection;
 
 import android.os.AsyncTask;
 
+import com.yingxuan.stationerystore.session.User;
+
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -27,6 +29,7 @@ public class AsyncToServer extends AsyncTask<Command, Void, JSONObject> {
         try {
             URL url = new URL(cmd.endPt);
             conn = (HttpURLConnection) url.openConnection();
+            conn.addRequestProperty("Cookie","ASP.NET_SessionId=" + User.sessionId);
             conn.setConnectTimeout(20000);
 
             // send data
