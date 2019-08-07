@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
-import com.yingxuan.stationerystore.department.ApproveFrag;
+import com.yingxuan.stationerystore.department.ApproveIndexFrag;
 import com.yingxuan.stationerystore.department.DelegateFrag;
 import com.yingxuan.stationerystore.department.RepFrag;
 import com.yingxuan.stationerystore.session.User;
@@ -62,7 +62,7 @@ public class FirstActivity extends AppCompatActivity {
         FragmentTransaction trans = fm.beginTransaction();
         switch(User.role) {
             case "Head":
-                frag = new ApproveFrag();
+                frag = new ApproveIndexFrag();
                 break;
             case "Clerk":
             case "Supervisor":
@@ -85,7 +85,7 @@ public class FirstActivity extends AppCompatActivity {
 
                 switch(id) {
                     case R.id.approve:
-                        frag = new ApproveFrag();
+                        frag = new ApproveIndexFrag();
                         break;
                     case R.id.rep:
                         frag = new RepFrag();
