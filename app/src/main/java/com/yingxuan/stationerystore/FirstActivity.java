@@ -25,6 +25,7 @@ import com.yingxuan.stationerystore.department.RepFrag;
 import com.yingxuan.stationerystore.model.Retrieval;
 import com.yingxuan.stationerystore.session.User;
 import com.yingxuan.stationerystore.store.AdjIndexFrag;
+import com.yingxuan.stationerystore.store.DisbursementFrag;
 import com.yingxuan.stationerystore.store.RetrievalFrag;
 
 import org.json.JSONArray;
@@ -71,15 +72,24 @@ public class FirstActivity extends AppCompatActivity {
         Fragment frag = null;
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction trans = fm.beginTransaction();
-        switch(User.role) {
-            case "Head":
-                frag = new ApproveIndexFrag();
-                break;
-            case "Clerk":
-            case "Supervisor":
-            case "Manager":
-                frag = new RetrievalFrag();
-                break;
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            String flag=extras.getString("flag");
+            if(flag.equals("disbursementfrag")){
+                frag = new DisbursementFrag();
+            }
+        }else {
+            switch (User.role) {
+                case "Head":
+                    frag = new ApproveIndexFrag();
+                    break;
+                case "Clerk":
+                case "Supervisor":
+                case "Manager":
+                    frag = new RetrievalFrag();
+                    break;
+            }
         }
         trans.replace(R.id.frag, frag);
         trans.commit();
@@ -111,7 +121,7 @@ public class FirstActivity extends AppCompatActivity {
                         frag = new RetrievalFrag();
                         break;
                     case R.id.disbursement:
-                        frag = new RetrievalFrag();
+                        frag = new DisbursementFrag();
                         break;
                     case R.id.adjustment:
                         frag = new AdjIndexFrag();
