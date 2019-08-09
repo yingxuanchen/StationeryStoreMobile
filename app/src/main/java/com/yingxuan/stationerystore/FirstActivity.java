@@ -107,7 +107,7 @@ public class FirstActivity extends AppCompatActivity {
                         frag = new RetrievalFrag();
                         break;
                     case R.id.disbursement:
-                        frag = new RetrievalFrag();
+                        frag = new DisbursementFrag();
                         break;
                     case R.id.adjustment:
                         frag = new AdjIndexFrag();
