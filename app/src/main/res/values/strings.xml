@@ -27,11 +27,11 @@
 
     <!--delegate page-->
     <string name="delegate">Delegation</string>
-    <string name="startD">Start Date: </string>
-    <string name="endD">End Date: </string>
-    <string name="Emp">Employee: </string>
-    <string name="confirmDel">Confirm Delegation</string>
-    <string name="cancelDel">Cancel Delegation</string>
+    <string name="start_date">Start Date: </string>
+    <string name="end_date">End Date: </string>
+    <string name="emp">Employee: </string>
+    <string name="del_confirm">Confirm Delegation</string>
+    <string name="del_cancel">Cancel Delegation</string>
 
 
     <!--assign Rep page-->
@@ -51,6 +51,10 @@
     <string name="error_unauthorised">You are not authorised to use this mobile app</string>
     <string name="error_no_connection">Error in connection with server</string>
 
+    <!--error message during delegation-->
+    <string name="error_del_date_empty">Start date and end date cannot be empty</string>
+    <string name="error_del_date_invalid">End date cannot be earlier than start date</string>
+
     <!--error message during retrieval-->
     <string name="error_retrieve">There are invalid values entered for retrieved quantity</string>
 
@@ -67,8 +71,15 @@
     </string>
     <string name="dialog_adj_title">Submit Adjustment Voucher</string>
     <string name="dialog_adj_msg">Confirm submission of adjustment voucher?</string>
+    <string name="dialog_del_title">Delegate</string>
+    <string name="dialog_del_msg">Confirm delegation?</string>
+    <string name="dialog_del_cancel_title">Cancel Delegation</string>
+    <string name="dialog_del_cancel_msg">Confirm cancellation?</string>
 
-    <!--toast messages when retrieve and adjustment voucher submitted-->
+    <!--toast messages when submissions are successful-->
     <string name="toast_adj">Adjustment voucher submitted successfully!</string>
     <string name="toast_retrieve">Retrieve successful.\nDisbursement lists have been generated.</string>
+    <string name="toast_del">Delegation successful!</string>
+    <string name="toast_del_cancel">Cancellation successful!</string>
+
 </resources>

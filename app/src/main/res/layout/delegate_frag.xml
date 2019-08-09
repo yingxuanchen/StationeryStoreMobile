@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,81 +16,100 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginVertical="30dp"
             android:text="Delegation"
             android:textColor="@color/black"
             android:textSize="40sp"
             android:textStyle="bold" />
 
-        <LinearLayout
-            style="@style/linear_del">
+        <LinearLayout style="@style/linear_del">
 
             <TextView
-                style="@style/Labels"
-                android:text="@string/startD"
-                android:textColor="@color/black" />
+                style="@style/del_text"
+                android:text="@string/start_date"
+                android:textColor="@color/black"
+                android:layout_weight="1"/>
 
-            <EditText
-                android:id="@+id/start_date_picker"
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:background="@drawable/editextstyle"
-                android:textSize="20sp" />
+                android:background="@drawable/editextstyle">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/start_date_picker_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/cal_24" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/cal_24" />
+
+                <EditText
+                    android:id="@+id/start_date_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:paddingHorizontal="4dp" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/linear_del">
+        <LinearLayout style="@style/linear_del">
 
             <TextView
-                style="@style/Labels"
-                android:text="@string/endD"
-                android:textColor="@color/black" />
+                style="@style/del_text"
+                android:text="@string/end_date"
+                android:textColor="@color/black"
+                android:layout_weight="1"/>
 
-            <EditText
-                android:id="@+id/end_date_picker"
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:background="@drawable/editextstyle"
-                android:textSize="20sp" />
+                android:background="@drawable/editextstyle">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/end_date_picker_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/cal_24" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/cal_24" />
+
+                <EditText
+                    android:id="@+id/end_date_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:paddingHorizontal="4dp" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/linear_del">
+        <LinearLayout style="@style/linear_del">
 
             <TextView
-                style="@style/Labels"
-                android:text="@string/Emp"
-                android:textColor="@color/black" />
+                style="@style/del_text"
+                android:text="@string/emp"
+                android:textColor="@color/black"
+                android:layout_weight="1"/>
 
             <Spinner
                 android:id="@+id/del_emp_list"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5" />
-
-            <TextView
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"/>
+                android:layout_weight="1.5"/>
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/error_del"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toTopOf="@id/del_confirm_btn"
+        tools:text="End date cannot be earlier than start date" />
 
     <Button
         android:id="@+id/del_confirm_btn"
@@ -97,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:padding="20dp"
-        android:text="@string/confirmDel"
+        android:text="@string/del_confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

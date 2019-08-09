@@ -19,6 +19,7 @@ import com.yingxuan.stationerystore.connection.AsyncToServer;
 import com.yingxuan.stationerystore.connection.Command;
 import com.yingxuan.stationerystore.department.ApproveIndexFrag;
 import com.yingxuan.stationerystore.department.DelegateCancelFrag;
+import com.yingxuan.stationerystore.department.DelegateCheckFrag;
 import com.yingxuan.stationerystore.department.DelegateFrag;
 import com.yingxuan.stationerystore.department.RepFrag;
 import com.yingxuan.stationerystore.model.Retrieval;
@@ -32,7 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class FirstActivity extends AppCompatActivity implements AsyncToServer.IServerResponse {
+public class FirstActivity extends AppCompatActivity {
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
@@ -104,8 +105,8 @@ public class FirstActivity extends AppCompatActivity implements AsyncToServer.IS
                         frag = new RepFrag();
                         break;
                     case R.id.delegate:
-                        checkDelegation();
-                        return true;
+                        frag = new DelegateCheckFrag();
+                        break;
                     case R.id.retrieve:
                         frag = new RetrievalFrag();
                         break;
@@ -141,40 +142,5 @@ public class FirstActivity extends AppCompatActivity implements AsyncToServer.IS
         if(t.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
-    }
-
-    public void checkDelegation() {
-        Command cmd = new Command(this, "checkDelegation","/DeptDelegation/Check", null);
-        new AsyncToServer().execute(cmd);
-    }
-
-    @Override
-    public void onServerResponse(JSONObject jsonObj) {
-        if (jsonObj == null)
-            return;
-
-        try {
-            String context = jsonObj.getString("context");
-
-            // use different Fragment depending on whether there is existing delegation
-            if (context.compareTo("checkDelegation") == 0)
-            {
-                Fragment frag = null;
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction trans = fm.beginTransaction();
-
-                String delegationStatus = jsonObj.getString("delegation");
-                if (delegationStatus.equals("No Delegation"))
-                    frag = new DelegateFrag();
-                else if (delegationStatus.equals("Delegated"))
-                    frag = new DelegateCancelFrag();
-
-                trans.replace(R.id.frag, frag);
-                trans.addToBackStack(null);
-                trans.commit();
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 }

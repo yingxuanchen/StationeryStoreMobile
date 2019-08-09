@@ -79,8 +79,9 @@ public class AdjNewFrag extends Fragment
         try {
             String context = (String) jsonObj.get("context");
 
+            // get items from server to display
             if (context.compareTo("get") == 0) {
-                // Convert JSON to an ArrayList of item ids and item names
+
                 itemNames = new ArrayList<String>();
                 itemIds = new ArrayList<String>();
 
@@ -93,16 +94,8 @@ public class AdjNewFrag extends Fragment
                     itemIds.add(itemId);
                     itemNames.add(itemName);
                 }
-
-                // Create an ArrayAdapter using the list of items and a default spinner layout
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
-                        android.R.layout.simple_spinner_item, itemNames);
-                // Specify the layout to use when the list of choices appears
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                // Apply the adapter to the spinner
-                spinner.setAdapter(adapter);
             }
-
+            // after successfully submitting adjustment voucher, redirect to Adjustment Index Fragment
             else if (context.compareTo("set") == 0) {
                 String status = jsonObj.getString("status");
                 if (status.equals("ok")) {
@@ -119,6 +112,14 @@ public class AdjNewFrag extends Fragment
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        // Create an ArrayAdapter using the list of items and a default spinner layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_spinner_item, itemNames);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
     }
 
     // get the adjustment details, convert to JSONObject
