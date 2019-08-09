@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -39,16 +40,24 @@ public class RetrievalFrag extends Fragment
         implements View.OnClickListener, AsyncToServer.IServerResponse {
 
     private List<Retrieval> retrievals;
-    private TextView errorView;
-    private boolean flag = false;
     private ArrayList<AdjustmentDetails> adjDetails;
     private JSONArray retrievalArray;
+
+    private TextView errorView;
+    private TextView emptyView;
+    private ProgressBar progressBar;
+    private boolean flag = false;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.retrieval_frag, container, false);
+
+        emptyView = view.findViewById(R.id.ret_empty);
+        emptyView.setVisibility(View.GONE);
+
+        progressBar = view.findViewById(R.id.progress_bar);
 
         errorView = view.findViewById(R.id.error_retrieve);
         errorView.setVisibility(View.GONE);
@@ -67,6 +76,8 @@ public class RetrievalFrag extends Fragment
     public void onServerResponse(JSONObject jsonObj) {
         if (jsonObj == null)
             return;
+
+        progressBar.setVisibility(View.GONE);
 
         try {
             String context = (String) jsonObj.get("context");
@@ -131,6 +142,9 @@ public class RetrievalFrag extends Fragment
         // add items into TableLayout row by row
         TableLayout tableLayout = getView().findViewById(R.id.retrieve_table);
 
+        if (retrievals.size() == 0)
+            emptyView.setVisibility(View.VISIBLE);
+
         for (Retrieval retrieval : retrievals) {
             // Create a new table row.
             TableRow tableRow = new TableRow(appContext);
@@ -176,6 +190,8 @@ public class RetrievalFrag extends Fragment
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        progressBar.setVisibility(View.VISIBLE);
 
         adjDetails = new ArrayList<AdjustmentDetails>();
         retrievalArray = new JSONArray();

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="8dp"
-        android:text="Inventory Adjustment Vouchers"
+        android:text="@string/adj_title_many"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="There are no inventory adjustment vouchers"
+        android:text="@string/adj_no_vouchers"
         app:layout_constraintBottom_toTopOf="@id/adj_new_btn"
         app:layout_constraintTop_toBottomOf="@id/adj_index_title" />
 
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Create New Voucher"
+        android:text="@string/adj_create_new"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

@@ -24,7 +24,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:text="Disbursement ID:"/>
 
             <TextView
@@ -32,7 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"/>
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -43,7 +43,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:text="Date:"/>
 
             <TextView
@@ -51,7 +51,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"/>
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -62,7 +62,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:text="Department:"/>
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"/>
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -81,7 +81,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:text="Status:"/>
 
             <TextView
@@ -89,13 +89,13 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"/>
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <Button
             android:id="@+id/view_button"
             android:layout_width="150dp"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:focusable="false"

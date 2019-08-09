@@ -22,12 +22,12 @@
             android:textSize="40sp"
             android:textStyle="bold" />
 
-        <LinearLayout style="@style/linear_del">
+        <LinearLayout style="@style/del_linear">
 
             <TextView
                 style="@style/del_text"
                 android:layout_weight="1"
-                android:text="@string/start_date" />
+                android:text="@string/del_start_date" />
 
             <TextView
                 android:id="@+id/start_date"
@@ -37,12 +37,12 @@
 
         </LinearLayout>
 
-        <LinearLayout style="@style/linear_del">
+        <LinearLayout style="@style/del_linear">
 
             <TextView
                 style="@style/del_text"
                 android:layout_weight="1"
-                android:text="@string/end_date" />
+                android:text="@string/del_end_date" />
 
             <TextView
                 android:id="@+id/end_date"
@@ -52,12 +52,12 @@
 
         </LinearLayout>
 
-        <LinearLayout style="@style/linear_del">
+        <LinearLayout style="@style/del_linear">
 
             <TextView
                 style="@style/del_text"
                 android:layout_weight="1"
-                android:text="@string/emp" />
+                android:text="@string/del_emp" />
 
             <TextView
                 android:id="@+id/emp"

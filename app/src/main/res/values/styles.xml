@@ -42,6 +42,17 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <!--for assign rep screen-->
+    <style name="rep_text">
+        <item name="android:textSize">22sp</item>
+        <item name="android:layout_marginHorizontal">40dp</item>
+        <item name="android:layout_marginVertical">15dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <!-- for delegate screen -->
     <style name="del_text">
         <item name="android:textSize">22sp</item>
@@ -52,7 +63,7 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="linear_del">
+    <style name="del_linear">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
@@ -65,7 +76,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!--Adjustment Index and Details-->
+    <!-- for adjustment screens -->
     <style name="adj_linear_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -89,7 +100,7 @@
     <!--for Disbursement Details-->
     <style name="DisbursementTV">
         <item name="android:layout_weight">4</item>
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
@@ -98,7 +109,7 @@
 
     <style name="DisbursementTVInfo">
         <item name="android:layout_weight">6</item>
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:fontFamily">sans-serif-black</item>
@@ -109,7 +120,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:paddingHorizontal">5dp</item>
         <item name="android:layout_weight">6</item>
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
 </resources>

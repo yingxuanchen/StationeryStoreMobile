@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="8dp"
-        android:text="Inventory Adjustment Voucher"
+        android:text="@string/adj_title_one"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
 
             <TextView
                 style="@style/adj_header"
-                android:text="Voucher No. :" />
+                android:text="@string/adj_voucher_no" />
 
             <TextView
                 android:id="@+id/voucher_no"
@@ -44,7 +44,7 @@
 
             <TextView
                 style="@style/adj_header"
-                android:text="Date Submitted :" />
+                android:text="@string/adj_date_submitted" />
 
             <TextView
                 android:id="@+id/date_submitted"
@@ -57,7 +57,7 @@
 
             <TextView
                 style="@style/adj_header"
-                android:text="Submitted By :" />
+                android:text="@string/adj_submitted_by" />
 
             <TextView
                 android:id="@+id/submitted_by"
@@ -70,7 +70,7 @@
 
             <TextView
                 style="@style/adj_header"
-                android:text="Total Value :" />
+                android:text="@string/adj_total_value" />
 
             <TextView
                 android:id="@+id/total_value"
@@ -83,7 +83,7 @@
 
             <TextView
                 style="@style/adj_header"
-                android:text="Status :" />
+                android:text="@string/adj_status" />
 
             <TextView
                 android:id="@+id/status"
@@ -115,19 +115,19 @@
 
                 <TextView
                     style="@style/retrieval"
-                    android:text="Item Code" />
+                    android:text="@string/adj_item_code" />
 
                 <TextView
                     style="@style/retrieval"
-                    android:text="Description" />
+                    android:text="@string/adj_description" />
 
                 <TextView
                     style="@style/retrieval"
-                    android:text="Quantity" />
+                    android:text="@string/adj_quantity" />
 
                 <TextView
                     style="@style/retrieval"
-                    android:text="Reason" />
+                    android:text="@string/adj_reason" />
 
             </TableRow>
 

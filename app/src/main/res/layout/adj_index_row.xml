@@ -19,7 +19,7 @@
 
             <TextView
                 style="@style/adj_header"
-                android:text="Voucher No." />
+                android:text="@string/adj_voucher_no" />
 
             <TextView
                 android:id="@+id/voucher_no"
@@ -32,7 +32,7 @@
 
             <TextView
                 style="@style/adj_header"
-                android:text="Date Submitted" />
+                android:text="@string/adj_date_submitted" />
 
             <TextView
                 android:id="@+id/date_submitted"
@@ -45,7 +45,7 @@
 
             <TextView
                 style="@style/adj_header"
-                android:text="Submitted By" />
+                android:text="@string/adj_submitted_by" />
 
             <TextView
                 android:id="@+id/submitted_by"
@@ -58,7 +58,7 @@
 
             <TextView
                 style="@style/adj_header"
-                android:text="Status" />
+                android:text="@string/adj_status" />
 
             <TextView
                 android:id="@+id/status"

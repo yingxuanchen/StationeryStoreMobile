@@ -79,7 +79,7 @@ public class FirstActivity extends AppCompatActivity {
             if(flag.equals("disbursementfrag")){
                 frag = new DisbursementFrag();
             }
-        }else {
+        } else {
             switch (User.role) {
                 case "Head":
                     frag = new ApproveIndexFrag();
@@ -136,7 +136,7 @@ public class FirstActivity extends AppCompatActivity {
                         // prevent user from being able to press back to access previous session
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        break;
+                        return true;
                 }
                 trans.replace(R.id.frag, frag);
                 trans.addToBackStack(null);

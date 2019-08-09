@@ -17,6 +17,24 @@
         app:layout_constraintTop_toTopOf="parent"
         android:padding="8dp"/>
 
+    <TextView
+        android:id="@+id/ret_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/ret_no_items"
+        app:layout_constraintBottom_toTopOf="@id/error_retrieve"
+        app:layout_constraintTop_toBottomOf="@id/retrieve_title"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleLargeInverse"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/error_retrieve"
+        app:layout_constraintTop_toBottomOf="@id/retrieve_title"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -36,23 +54,23 @@
 
                 <TextView
                     style="@style/retrieval"
-                    android:text="Bin #" />
+                    android:text="@string/ret_bin_no" />
 
                 <TextView
                     style="@style/retrieval"
-                    android:text="Item" />
+                    android:text="@string/ret_item" />
 
                 <TextView
                     style="@style/retrieval"
-                    android:text="UOM" />
+                    android:text="@string/ret_uom" />
 
                 <TextView
                     style="@style/retrieval"
-                    android:text="Needed" />
+                    android:text="@string/ret_needed" />
 
                 <TextView
                     style="@style/retrieval"
-                    android:text="Retrieved" />
+                    android:text="@string/ret_retrieved" />
             </TableRow>
 
         </TableLayout>
@@ -73,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Retrieve"
+        android:text="@string/ret_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 

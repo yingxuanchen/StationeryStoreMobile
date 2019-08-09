@@ -24,26 +24,44 @@
     <string name="Reject"> Reject </string>
     <string name="Accept"> Approve </string>
 
-
     <!--delegate page-->
-    <string name="delegate">Delegation</string>
-    <string name="start_date">Start Date: </string>
-    <string name="end_date">End Date: </string>
-    <string name="emp">Employee: </string>
+    <string name="del_title">Delegation</string>
+    <string name="del_start_date">Start Date: </string>
+    <string name="del_end_date">End Date: </string>
+    <string name="del_emp">Employee: </string>
     <string name="del_confirm">Confirm Delegation</string>
     <string name="del_cancel">Cancel Delegation</string>
 
-
     <!--assign Rep page-->
-    <string name="assignRep">Assign Department Representative</string>
-    <string name="nowRep">Current Department Rep: </string>
-    <string name="newRep">Change Department Rep: </string>
-    <string name="save">Save</string>
-    <string name="cfmChg">Confirm Change</string>
-    <string name="RUSure">Are you sure?</string>
-    <string name="N">No</string>
-    <string name="Y">Yes</string>
+    <string name="rep_title">Assign Department Representative</string>
+    <string name="rep_save">Save</string>
+    <string name="rep_current">Current Department Rep is :</string>
+    <string name="rep_change">Change Department Rep to :</string>
 
+    <!--Retrieval page-->
+    <string name="ret_no_items">There are no items pending for retrieval</string>
+    <string name="ret_bin_no">Bin #</string>
+    <string name="ret_item">Item</string>
+    <string name="ret_uom">UOM</string>
+    <string name="ret_needed">Needed</string>
+    <string name="ret_retrieved">Retrieved</string>
+    <string name="ret_btn">Retrieve</string>
+
+    <!--Adjustment pages-->
+    <string name="adj_title_one">Inventory Adjustment Voucher</string>
+    <string name="adj_voucher_no">Voucher No. :</string>
+    <string name="adj_date_submitted">Date Submitted :</string>
+    <string name="adj_submitted_by">Submitted By :</string>
+    <string name="adj_total_value">Total Value :</string>
+    <string name="adj_status">Status :</string>
+    <string name="adj_item_code">Item Code</string>
+    <string name="adj_description">Description</string>
+    <string name="adj_quantity">Quantity</string>
+    <string name="adj_reason">Reason</string>
+    <string name="adj_title_many">Inventory Adjustment Vouchers</string>
+    <string name="adj_no_vouchers">There are no inventory adjustment vouchers</string>
+    <string name="adj_create_new">Create New Voucher</string>
+    <string name="adj_submit">Submit</string>
 
     <!--error messages during login-->
     <string name="error_empty_inputs">Please enter Email and Password</string>
@@ -51,11 +69,11 @@
     <string name="error_unauthorised">You are not authorised to use this mobile app</string>
     <string name="error_no_connection">Error in connection with server</string>
 
-    <!--error message during delegation-->
+    <!--error messages during delegation-->
     <string name="error_del_date_empty">Start date and end date cannot be empty</string>
     <string name="error_del_date_invalid">End date cannot be earlier than start date</string>
 
-    <!--error message during retrieval-->
+    <!--error messages during retrieval-->
     <string name="error_retrieve">There are invalid values entered for retrieved quantity</string>
 
     <!--error messages during adjustment-->
@@ -71,15 +89,18 @@
     </string>
     <string name="dialog_adj_title">Submit Adjustment Voucher</string>
     <string name="dialog_adj_msg">Confirm submission of adjustment voucher?</string>
-    <string name="dialog_del_title">Delegate</string>
+    <string name="dialog_del_title">Delegation</string>
     <string name="dialog_del_msg">Confirm delegation?</string>
     <string name="dialog_del_cancel_title">Cancel Delegation</string>
     <string name="dialog_del_cancel_msg">Confirm cancellation?</string>
+    <string name="dialog_rep_title">Change Department Rep</string>
+    <string name="dialog_rep_msg">Confirm change in department representative?</string>
 
     <!--toast messages when submissions are successful-->
     <string name="toast_adj">Adjustment voucher submitted successfully!</string>
-    <string name="toast_retrieve">Retrieve successful.\nDisbursement lists have been generated.</string>
+    <string name="toast_retrieve">Retrieve successful!\nDisbursement lists have been generated.</string>
     <string name="toast_del">Delegation successful!</string>
     <string name="toast_del_cancel">Cancellation successful!</string>
+    <string name="toast_rep">Change in representative successful!</string>
 
 </resources>
