@@ -111,11 +111,11 @@ public class RetrievalFrag extends Fragment
                         trans.addToBackStack(null);
                         trans.commit();
                     }
-                    // TODO: go to disbursement page if retrieve is successful and no adjustment voucher needed
+                    // go to disbursement page if retrieve is successful and no adjustment voucher needed
                     else {
                         FragmentManager fm = getActivity().getSupportFragmentManager();
                         FragmentTransaction trans = fm.beginTransaction();
-                        Fragment frag = new RetrievalFrag();
+                        Fragment frag = new DisbursementFrag();
                         trans.replace(R.id.frag, frag);
                         trans.commit();
                     }
