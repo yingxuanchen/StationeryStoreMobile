@@ -210,12 +210,16 @@ public class CollectionActivity extends AppCompatActivity
 
                 JSONArray jsonArray = new JSONArray();
                 for (int i=0; i<itemlist.size(); i++) {
-                    DisbursementDetails d = new DisbursementDetails();
-                    d=itemlist.get(i);
-                    EditText item = (EditText) findViewById(IDList.get(i));
+                    DisbursementDetails d;
+                    d = itemlist.get(i);
+                    EditText item = findViewById(IDList.get(i));
                     int qty=Integer.parseInt(item.getText().toString());
                     if(qty<0){
                         Toast.makeText(this,"Quantity cannot be negative",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if(qty>d.getQtyRetrieved()){
+                        Toast.makeText(this,"Quantity collected cannot be more than delivered",Toast.LENGTH_LONG).show();
                         return;
                     }
 
