@@ -11,13 +11,17 @@
         android:layout_width="180dp"
         android:layout_height="130dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/lu"/>
 
     <TextView
         android:id="@+id/nameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Esther Tan"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginBottom="15dp"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:gravity="center"/>
 
 </LinearLayout>

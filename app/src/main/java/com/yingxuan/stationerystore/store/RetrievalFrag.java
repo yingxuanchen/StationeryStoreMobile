@@ -191,8 +191,6 @@ public class RetrievalFrag extends Fragment
             e.printStackTrace();
         }
 
-        progressBar.setVisibility(View.VISIBLE);
-
         adjDetails = new ArrayList<AdjustmentDetails>();
         retrievalArray = new JSONArray();
 
@@ -259,5 +257,7 @@ public class RetrievalFrag extends Fragment
         }
         Command cmd = new Command(this, "set","/StoreRetrieval/Retrieve", data);
         new AsyncToServer().execute(cmd);
+
+        progressBar.setVisibility(View.VISIBLE);
     }
 }
