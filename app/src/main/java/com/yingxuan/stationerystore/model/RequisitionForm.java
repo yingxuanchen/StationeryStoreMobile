@@ -5,17 +5,23 @@ import java.util.HashMap;
 public class RequisitionForm extends HashMap<String, Object> {
 
     private String rId;
-    private String empName;
     private String date;
+    private String empName;
 
-    public RequisitionForm(String rId, String date, String empName) {
 
-        this.put("id", rId);
+    public RequisitionForm(String Id, String date, String empName) {
+
+        this.rId = Id;
+        this.date = date;
+        this.empName = empName;
+
+        this.put("rid", rId);
+        this.put("date", date);
         this.put("empName", empName);
-        this.put("dateSubmitted", date);
 
     }
 
+    //getters
     public String getrId() {
         return rId;
     }
@@ -29,4 +35,16 @@ public class RequisitionForm extends HashMap<String, Object> {
     }
 
 
+    //setters
+    public void setrId(String rId) {
+        this.rId = rId;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

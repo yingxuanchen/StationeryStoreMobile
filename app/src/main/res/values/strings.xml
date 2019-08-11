@@ -13,12 +13,7 @@
     <string name="logout">Logout</string>
 
     <!--approve page-->
-    <string name="req_id">Requisition ID: </string>
-    <string name="stats">Status: </string>
-    <string name="dos">Date of Submission: </string>
-    <string name="sub_by">Submitted By: </string>
 
-    <string name="ord_items">Ordered Items</string>
     <string name="comments">Comments : </string>
 
     <string name="Reject"> Reject </string>
@@ -97,6 +92,7 @@
     <string name="dialog_rep_msg">Confirm change in department representative?</string>
 
     <!--toast messages when submissions are successful-->
+    <string name="toast_aprv">Requisition form processed!</string>
     <string name="toast_adj">Adjustment voucher submitted successfully!</string>
     <string name="toast_retrieve">Retrieve successful!\nDisbursement lists have been generated.</string>
     <string name="toast_del">Delegation successful!</string>

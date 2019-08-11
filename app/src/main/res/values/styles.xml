@@ -33,15 +33,6 @@
         <item name="android:fontFamily">sans-serif-black</item>
     </style>
 
-    <style name="ApproveTS">
-        <item name="android:layout_weight">3</item>
-        <item name="android:padding">10dp</item>
-        <item name="android:textSize">18dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">80dp</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
     <!--for assign rep screen-->
     <style name="rep_text">
         <item name="android:textSize">22sp</item>
@@ -71,12 +62,13 @@
         <item name="android:layout_marginVertical">30dp</item>
     </style>
 
+
     <!--Retrieval Form and Adjustment Items table header-->
     <style name="retrieval">
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!-- for adjustment screens -->
+    <!--Adjustment Index and Details-->
     <style name="adj_linear_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -100,7 +92,7 @@
     <!--for Disbursement Details-->
     <style name="DisbursementTV">
         <item name="android:layout_weight">4</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">18dp</item>
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
@@ -109,7 +101,7 @@
 
     <style name="DisbursementTVInfo">
         <item name="android:layout_weight">6</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">18dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:fontFamily">sans-serif-black</item>
@@ -120,7 +112,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:paddingHorizontal">5dp</item>
         <item name="android:layout_weight">6</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">15dp</item>
     </style>
 
 </resources>
