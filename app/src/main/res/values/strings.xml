@@ -37,7 +37,7 @@
     <string name="del_cancel">Cancel Delegation</string>
 
     <!--Retrieval page-->
-    <string name="ret_no_items">There are no items pending for retrieval</string>
+    <string name="ret_no_items">There are no items pending retrieval</string>
     <string name="ret_bin_no">Bin #</string>
     <string name="ret_item">Item</string>
     <string name="ret_uom">UOM</string>
