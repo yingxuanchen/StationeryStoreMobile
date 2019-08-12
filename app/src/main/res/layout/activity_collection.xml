@@ -172,12 +172,10 @@
 
                 </TableLayout>
 
-
-
                 <LinearLayout
                     android:id="@+id/commentRow"
                     style="@style/linearApprove_hori"
-                    app:layout_constraintTop_toBottomOf="@id/itemList"
+                    app:layout_constraintTop_toBottomOf="@id/table"
                     app:layout_constraintRight_toRightOf="parent"
                     android:orientation="vertical">
 

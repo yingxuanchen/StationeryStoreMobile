@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="8dp"
-        android:text="Requistions For Approval"
+        android:text="Requisitions For Approval"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,12 +20,12 @@
     <ListView
         android:id="@+id/apvlist_index_list"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_height="0dp"
         android:divider="@null"
         android:dividerHeight="0dp"
-        app:layout_constraintBottom_toTopOf="@id/invisible_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/apvlist_index_title" />
 
     <TextView
@@ -34,18 +34,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="There are no forms pending approval."
-        app:layout_constraintBottom_toTopOf="@id/invisible_btn"
-        app:layout_constraintTop_toBottomOf="@id/apvlist_index_title" />
-
-    <Button
-        android:id="@+id/invisible_btn"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="Ignore my existence"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/apvlist_index_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

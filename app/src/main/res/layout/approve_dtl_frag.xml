@@ -17,7 +17,6 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <LinearLayout
         android:id="@+id/apv_details_summary"
         android:layout_width="match_parent"
@@ -85,7 +84,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
+        android:gravity="start"
         android:padding="15dp"
         android:text="Ordered Items"
         android:textSize="20sp"
@@ -99,14 +98,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@id/comment_header"
         app:layout_constraintTop_toBottomOf="@id/apv_details_summary">
 
         <TableLayout
             android:id="@+id/ordItemsRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:stretchColumns="*">
+            android:stretchColumns="*"
+            android:visibility="invisible">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -131,7 +131,7 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/commentheader"
+        android:id="@+id/comment_header"
         style="@style/linearApprove_hori"
         android:paddingHorizontal="15dp"
         app:layout_constraintBottom_toTopOf="@id/commentlo"
@@ -141,7 +141,7 @@
 
         <TextView
             style="@style/adj_header"
-            android:text="@string/comments"></TextView>
+            android:text="@string/comments" />
 
     </LinearLayout>
 
@@ -167,33 +167,33 @@
 
     <LinearLayout
         android:id="@+id/resp_btns"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp">
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
         <Button
             android:id="@+id/rj_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="@string/Reject"
-            android:textColor="@color/white"
+            android:layout_marginStart="120dp"
             android:backgroundTint="@color/red"
             android:paddingHorizontal="40dp"
-            android:layout_marginLeft="120dp" />
+            android:text="@string/Reject"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/apv_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="@string/Accept"
-            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
             android:backgroundTint="@color/green"
             android:paddingHorizontal="35dp"
-            android:layout_marginLeft="10dp" />
+            android:text="@string/Accept"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

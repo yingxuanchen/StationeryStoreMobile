@@ -95,15 +95,14 @@ public class ApproveFrag extends Fragment implements View.OnClickListener, Async
             return;
         }
 
-        // Convert JSON to an ArrayList of item
         try {
-            JSONArray selectItems = jsonObj.getJSONArray("filtered_items");
-            JSONArray reqDetailsArray = jsonObj.getJSONArray("requisitiondetails");
-            ordereditems = new ArrayList<Item>();
-
             String context = (String) jsonObj.get("context");
 
+            // Convert JSON to an ArrayList of item
             if (context.compareTo("get") == 0) {
+                JSONArray selectItems = jsonObj.getJSONArray("filtered_items");
+                JSONArray reqDetailsArray = jsonObj.getJSONArray("requisitiondetails");
+                ordereditems = new ArrayList<Item>();
 
                 for (int i = 0; i <= (reqDetailsArray.length() - 1); i++) {
 
@@ -117,6 +116,19 @@ public class ApproveFrag extends Fragment implements View.OnClickListener, Async
 
                     ordereditems.add(rqDetail);
                 }
+            }
+            else {
+                String msg = "";
+                if (context.compareTo("setApprove") == 0)
+                    msg = "Form approved.";
+                else if (context.compareTo("setReject") == 0)
+                    msg = "Form rejected.";
+
+                Toast toast = Toast.makeText(getActivity().getApplicationContext(), msg, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+                redirect();
+                return;
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -159,7 +171,6 @@ public class ApproveFrag extends Fragment implements View.OnClickListener, Async
     public void onClick(View v) {
 
         try {
-
             final EditText commentbox = getView().findViewById(R.id.cmtbx);
             final String comment;
             Bundle bundle = getArguments();
@@ -174,22 +185,14 @@ public class ApproveFrag extends Fragment implements View.OnClickListener, Async
                 case R.id.apv_btn:
 
                     JSONObject data = submit(comment, id);
-                    Command cmd = new Command(this, "set", "deptapproverequisitions/AcceptRequisitionForm", data);
+                    Command cmd = new Command(this, "setApprove", "/DeptApproveRequisitions/AcceptRequisitionForm", data);
                     new AsyncToServer().execute(cmd);
-                    Toast toast = Toast.makeText(getActivity().getApplicationContext(), "Form approved.", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                    redirect();
                     break;
 
                 case R.id.rj_btn:
                     JSONObject data2 = submit(comment, id);
-                    Command cmd2 = new Command(this, "set", "/deptapproverequisitions/RejectRequisitionForm", data2);
+                    Command cmd2 = new Command(this, "setReject", "/DeptApproveRequisitions/RejectRequisitionForm", data2);
                     new AsyncToServer().execute(cmd2);
-                    Toast toast2 = Toast.makeText(getActivity().getApplicationContext(), "Form rejected.", Toast.LENGTH_LONG);
-                    toast2.setGravity(Gravity.CENTER, 0, 0);
-                    toast2.show();
-                    redirect();
                     break;
             }
 
@@ -213,15 +216,13 @@ public class ApproveFrag extends Fragment implements View.OnClickListener, Async
         return data;
     }
 
-    public void redirect() {
+    private void redirect() {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction trans = fm.beginTransaction();
         Fragment frag = new ApproveIndexFrag();
         trans.replace(R.id.frag, frag);
         trans.commit();
     }
-
-
 }
 
 

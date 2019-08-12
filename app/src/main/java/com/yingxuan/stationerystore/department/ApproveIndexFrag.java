@@ -48,10 +48,7 @@ public class ApproveIndexFrag extends Fragment implements AdapterView.OnItemClic
         new AsyncToServer().execute(cmd);
 
         return view;
-
-
     }
-
 
     @Override
     public void onServerResponse(JSONObject jsonObj) {
