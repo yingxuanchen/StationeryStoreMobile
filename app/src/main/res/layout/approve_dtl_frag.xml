@@ -137,10 +137,9 @@
         app:layout_constraintBottom_toTopOf="@id/commentlo"
         app:layout_constraintLeft_toLeftOf="parent">
 
-        <!--app:layout_constraintLeft_toLeftOf="parent">-->
-
         <TextView
             style="@style/adj_header"
+            android:background="@color/white"
             android:text="@string/comments" />
 
     </LinearLayout>
@@ -149,15 +148,13 @@
         android:id="@+id/commentlo"
         style="@style/approve_linear_horizontal"
         android:paddingHorizontal="15dp"
-        app:layout_constraintBottom_toTopOf="@id/resp_btns"
+        app:layout_constraintBottom_toTopOf="@id/rj_btn"
         app:layout_constraintRight_toRightOf="parent">
-
 
         <EditText
             android:id="@+id/cmtbx"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:layout_margin="1dp"
             android:background="@drawable/edit_text_style"
             android:backgroundTint="@color/white"
             android:gravity="start"
@@ -165,36 +162,31 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/resp_btns"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/rj_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="15dp"
+        android:backgroundTint="@color/red"
+        android:paddingHorizontal="40dp"
+        android:text="@string/Reject"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/apv_btn" />
+
+    <Button
+        android:id="@+id/apv_btn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:backgroundTint="@color/green"
+        android:paddingHorizontal="35dp"
+        android:text="@string/Accept"
+        android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <Button
-            android:id="@+id/rj_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:backgroundTint="@color/red"
-            android:paddingHorizontal="40dp"
-            android:text="@string/Reject"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-
-        <Button
-            android:id="@+id/apv_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:backgroundTint="@color/green"
-            android:paddingHorizontal="35dp"
-            android:text="@string/Accept"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-
-    </LinearLayout>
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
