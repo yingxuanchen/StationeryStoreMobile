@@ -2,105 +2,111 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     android:layout_marginTop="20dp"
     android:background="@drawable/border"
     android:descendantFocusability="blocksDescendants">
 
     <LinearLayout
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="Disbursement ID:"/>
 
             <TextView
-                android:id="@+id/disbursementid"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"/>
+                android:layout_weight="1"
+                android:text="@string/dis_id"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/disbursement_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="Date:"/>
+                android:layout_weight="1"
+                android:text="@string/dis_date"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"/>
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="Department:"/>
+                android:layout_weight="1"
+                android:text="@string/dis_dept"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/department"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"/>
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="Status:"/>
+                android:layout_weight="1"
+                android:text="@string/dis_status"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/status"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"/>
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
         </LinearLayout>
 
         <Button
             android:id="@+id/view_button"
             android:layout_width="150dp"
-            android:textSize="18sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:focusable="false"
-            android:text="View"/>
-
+            android:text="@string/dis_view"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

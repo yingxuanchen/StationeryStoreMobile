@@ -10,17 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.yingxuan.stationerystore.CollectionActivity;
-import com.yingxuan.stationerystore.MainActivity;
 import com.yingxuan.stationerystore.R;
-import com.yingxuan.stationerystore.connection.AsyncToServer;
-import com.yingxuan.stationerystore.connection.Command;
-
-import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -48,7 +40,7 @@ public class MySimpleAdapter extends SimpleAdapter
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(layout, parent,false);
             viewHolder = new ViewHolder();
-            viewHolder.TV_ID=(TextView)convertView.findViewById(R.id.disbursementid);
+            viewHolder.TV_ID=(TextView)convertView.findViewById(R.id.disbursement_id);
             viewHolder.TV_Date=(TextView)convertView.findViewById(R.id.date);
             viewHolder.TV_Department=(TextView)convertView.findViewById(R.id.department);
             viewHolder.TV_Status=(TextView)convertView.findViewById(R.id.status);

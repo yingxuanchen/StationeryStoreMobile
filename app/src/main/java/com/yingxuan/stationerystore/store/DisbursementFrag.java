@@ -1,16 +1,12 @@
 package com.yingxuan.stationerystore.store;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
-import com.yingxuan.stationerystore.FirstActivity;
 import com.yingxuan.stationerystore.R;
 import com.yingxuan.stationerystore.connection.AsyncToServer;
 import com.yingxuan.stationerystore.connection.Command;
@@ -32,7 +27,6 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -97,7 +91,7 @@ public class DisbursementFrag extends Fragment
                 //clear list
                 listView.setAdapter(new MySimpleAdapter(getActivity(),disbursements,R.layout.disbursement_row,
                         new String[]{"Id","DateCreated","DepartmentId","Status"},
-                        new int[]{R.id.disbursementid,R.id.date,R.id.department,R.id.status}));
+                        new int[]{R.id.disbursement_id,R.id.date,R.id.department,R.id.status}));
 
                 if(datastatus.equals("empty")){
                     Toast.makeText(getActivity(),"no record",Toast.LENGTH_SHORT).show();
@@ -113,7 +107,7 @@ public class DisbursementFrag extends Fragment
 
                     listView.setAdapter(new MySimpleAdapter(getActivity(), disbursements, R.layout.disbursement_row,
                             new String[]{"Id", "DateCreated", "DepartmentId", "Status"},
-                            new int[]{R.id.disbursementid, R.id.date, R.id.department, R.id.status}));
+                            new int[]{R.id.disbursement_id, R.id.date, R.id.department, R.id.status}));
                     //Toast.makeText(getActivity(), "updated", Toast.LENGTH_SHORT).show();
                 }
             }

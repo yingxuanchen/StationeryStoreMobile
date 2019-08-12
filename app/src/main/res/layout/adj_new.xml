@@ -62,7 +62,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/editextstyle"
+                android:background="@drawable/edit_text_style"
                 android:digits="0123456789"
                 android:gravity="start"
                 android:inputType="number"
@@ -85,7 +85,7 @@
             android:id="@+id/reason"
             android:layout_width="match_parent"
             android:layout_height="88dp"
-            android:background="@drawable/editextstyle"
+            android:background="@drawable/edit_text_style"
             android:gravity="top"
             android:inputType="textMultiLine"
             android:padding="4dp" />

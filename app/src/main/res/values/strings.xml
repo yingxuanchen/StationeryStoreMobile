@@ -3,6 +3,11 @@
     <string name="open">Open Drawer</string>
     <string name="close">Close Drawer</string>
 
+    <!--login page-->
+    <string name="login_email">Email Address</string>
+    <string name="login_password">Password</string>
+    <string name="login_btn">Login</string>
+
     <!--menu items-->
     <string name="retrieval">Retrieval Form</string>
     <string name="disbursement">Disbursement List</string>
@@ -13,10 +18,15 @@
     <string name="logout">Logout</string>
 
     <!--approve page-->
-
     <string name="comments">Comments : </string>
     <string name="Reject"> Reject </string>
     <string name="Accept"> Approve </string>
+
+    <!--assign Rep page-->
+    <string name="rep_title">Assign Department Representative</string>
+    <string name="rep_save">Save</string>
+    <string name="rep_current">Current Department Rep is :</string>
+    <string name="rep_change">Change Department Rep to :</string>
 
     <!--delegate page-->
     <string name="del_title">Delegation</string>
@@ -26,12 +36,6 @@
     <string name="del_confirm">Confirm Delegation</string>
     <string name="del_cancel">Cancel Delegation</string>
 
-    <!--assign Rep page-->
-    <string name="rep_title">Assign Department Representative</string>
-    <string name="rep_save">Save</string>
-    <string name="rep_current">Current Department Rep is :</string>
-    <string name="rep_change">Change Department Rep to :</string>
-
     <!--Retrieval page-->
     <string name="ret_no_items">There are no items pending for retrieval</string>
     <string name="ret_bin_no">Bin #</string>
@@ -40,6 +44,25 @@
     <string name="ret_needed">Needed</string>
     <string name="ret_retrieved">Retrieved</string>
     <string name="ret_btn">Retrieve</string>
+
+    <!--Disbursement pages-->
+    <string name="dis_title">Disbursement List</string>
+    <string name="dis_id">Disbursement ID:</string>
+    <string name="dis_collection_point">Collection Point:</string>
+    <string name="dis_status">Status:</string>
+    <string name="dis_dept">Department:</string>
+    <string name="dis_rep">Representative:</string>
+    <string name="dis_item">Item</string>
+    <string name="dis_description">Description</string>
+    <string name="dis_delivery_qty">DeliveryQty</string>
+    <string name="dis_collected_qty">CollectedQty</string>
+    <string name="dis_signature">Signature:</string>
+    <string name="dis_clear">Clear</string>
+    <string name="dis_submit">Submit</string>
+    <string name="dis_select_dept">Select Department:</string>
+    <string name="dis_search">Search</string>
+    <string name="dis_date">Date:</string>
+    <string name="dis_view">View</string>
 
     <!--Adjustment pages-->
     <string name="adj_title_one">Inventory Adjustment Voucher</string>

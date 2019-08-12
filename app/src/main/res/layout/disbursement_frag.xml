@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".store.RetrievalFrag">
 
-
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
@@ -21,45 +20,45 @@
         android:id="@+id/TV_select_dept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:text="Select Department:"/>
-
+        android:text="@string/dis_select_dept"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <LinearLayout
         android:id="@+id/Spinner_select_dept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/TV_select_dept"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/TV_select_dept">
 
         <Spinner
             android:id="@+id/spinner_department"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:textSize="20sp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="50dp"
-            />
+            android:layout_marginEnd="50dp"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
         <Button
             android:id="@+id/search_department"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="Search"/>
+            android:layout_marginStart="20dp"
+            android:text="@string/dis_search" />
+
     </LinearLayout>
 
     <ListView
         android:id="@+id/list_department"
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/Spinner_select_dept"/>
+        app:layout_constraintTop_toBottomOf="@+id/Spinner_select_dept" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

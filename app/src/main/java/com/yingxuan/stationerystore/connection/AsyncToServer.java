@@ -15,7 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class AsyncToServer extends AsyncTask<Command, Void, JSONObject> {
-    IServerResponse callback;
+    private IServerResponse callback;
 
     @Override
     protected JSONObject doInBackground(Command... cmds) {
@@ -60,7 +60,9 @@ public class AsyncToServer extends AsyncTask<Command, Void, JSONObject> {
             e.printStackTrace();
             return jsonObj;
         } finally {
-            conn.disconnect();
+            if (conn != null) {
+                conn.disconnect();
+            }
         }
 
         return jsonObj;

@@ -132,7 +132,7 @@
 
     <LinearLayout
         android:id="@+id/comment_header"
-        style="@style/linearApprove_hori"
+        style="@style/approve_linear_horizontal"
         android:paddingHorizontal="15dp"
         app:layout_constraintBottom_toTopOf="@id/commentlo"
         app:layout_constraintLeft_toLeftOf="parent">
@@ -147,7 +147,7 @@
 
     <LinearLayout
         android:id="@+id/commentlo"
-        style="@style/linearApprove_hori"
+        style="@style/approve_linear_horizontal"
         android:paddingHorizontal="15dp"
         app:layout_constraintBottom_toTopOf="@id/resp_btns"
         app:layout_constraintRight_toRightOf="parent">
@@ -158,7 +158,7 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_margin="1dp"
-            android:background="@drawable/editextstyle"
+            android:background="@drawable/edit_text_style"
             android:backgroundTint="@color/white"
             android:gravity="start"
             android:inputType="textNoSuggestions" />

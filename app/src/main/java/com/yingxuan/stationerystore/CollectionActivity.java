@@ -55,8 +55,8 @@ public class CollectionActivity extends AppCompatActivity
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_collection);
 
-        tv_id=findViewById(R.id.disbursementid);
-        tv_collectionPoint=findViewById(R.id.collectionpoint);
+        tv_id=findViewById(R.id.disbursement_id);
+        tv_collectionPoint=findViewById(R.id.collection_point);
         tv_status=findViewById(R.id.status);
         tv_department=findViewById(R.id.department);
         tv_repName=findViewById(R.id.representative);
@@ -67,7 +67,7 @@ public class CollectionActivity extends AppCompatActivity
         confirmBtn=findViewById(R.id.confirmBtn);
         clearBtn=findViewById(R.id.clearSign);
         tableLayout=findViewById(R.id.table);
-        signView=findViewById(R.id.signview);
+        signView=findViewById(R.id.sign_view);
         iv_signature=findViewById(R.id.IV_signature);
 
         clearBtn.setOnClickListener(this);
