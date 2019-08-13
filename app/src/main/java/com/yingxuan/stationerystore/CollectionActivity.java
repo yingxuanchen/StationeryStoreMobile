@@ -113,7 +113,7 @@ public class CollectionActivity extends AppCompatActivity
                 tv_remarks.setText(remarks);
 
                 //check status to show different UI
-                if(status.equals("collected")) {
+                if(status.equals("Collected")) {
                     et_remarks.setVisibility(View.GONE);
                     signView.setVisibility(View.GONE);
                     clearBtn.setVisibility(View.GONE);
@@ -172,7 +172,7 @@ public class CollectionActivity extends AppCompatActivity
                     textView.setText(Integer.toString(d.getQtyRetrieved()));
                     tableRow.addView(textView, 2);
 
-                    if(status.equals("collected")) {
+                    if(status.equals("Collected")) {
                         textView = new TextView(this);
                         textView.setText(Integer.toString(d.getQtyCollected()));
                         tableRow.addView(textView, 3,textLayoutParams1);
