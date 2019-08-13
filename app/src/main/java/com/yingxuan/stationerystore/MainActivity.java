@@ -37,12 +37,12 @@ public class MainActivity extends AppCompatActivity
         User.departmentId = "";
         User.sessionId = "";
 
-        Button btnlogin = findViewById(R.id.btn_Login);
+        Button btnLogin = findViewById(R.id.btn_Login);
         msgView = findViewById(R.id.errorMsg);
         pgbar = findViewById(R.id.pbar);
         pgbar.setVisibility(View.GONE);
 
-        btnlogin.setOnClickListener(this);
+        btnLogin.setOnClickListener(this);
     }
 
     @Override
@@ -117,10 +117,6 @@ public class MainActivity extends AppCompatActivity
                     User.name = storeStaff.getString("Name");
                     User.role = storeStaff.getString("Role");
                     User.sessionId = jsonObj.getString("sessionId");
-
-                    // change role name of store clerk so that can differentiate with normal employee
-                    if (User.role.equals("Employee"))
-                        User.role = "Clerk";
                 }
             }
         }
