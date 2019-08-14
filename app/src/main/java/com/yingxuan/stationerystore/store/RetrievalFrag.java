@@ -197,7 +197,15 @@ public class RetrievalFrag extends Fragment
         try {
             for (Retrieval retrieval : retrievals) {
                 EditText editView = view.getRootView().findViewWithTag(retrieval.getItemId());
-                int qty = Integer.parseInt(editView.getText().toString());
+                String qtyString = editView.getText().toString();
+
+                // display error message if quantity retrieved is empty
+                if (qtyString.equals("")) {
+                    errorView.setVisibility(View.VISIBLE);
+                    return;
+                }
+
+                int qty = Integer.parseInt(qtyString);
 
                 // display error message if quantity retrieved is invalid
                 if (qty<0 || qty>retrieval.getQuantityNeeded()) {

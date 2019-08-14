@@ -44,8 +44,11 @@ public class AdjDetailsFrag extends Fragment implements AsyncToServer.IServerRes
         // voucher info gotten from item click in previous page
         Adjustment adj = null;
         Bundle bundle = getArguments();
-        if (bundle != null)
+        if (bundle != null) {
             adj = (Adjustment) bundle.getSerializable("adj");
+            // remove data to prevent future "Parcel: unable to marshal value" exception
+            getArguments().remove("adj");
+        }
 
         // display voucher info
         TextView textView = view.findViewById(R.id.voucher_no);
@@ -63,7 +66,6 @@ public class AdjDetailsFrag extends Fragment implements AsyncToServer.IServerRes
         // get adjustment details from server
         JSONObject data = new JSONObject();
         try {
-            data.put("sessionId", User.sessionId);
             data.put("voucherId", adj.get("id"));
         } catch (Exception e){
             e.printStackTrace();

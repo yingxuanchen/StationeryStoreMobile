@@ -54,8 +54,11 @@ public class AdjAutoFrag extends Fragment
 
         // adj details gotten from retrieval page
         Bundle bundle = getArguments();
-        if (bundle != null)
+        if (bundle != null) {
             adjDetails = (ArrayList<AdjustmentDetails>) bundle.getSerializable("adjDetails");
+            // remove data to prevent future "Parcel: unable to marshal value" exception
+            getArguments().remove("adjDetails");
+        }
 
         // add a View for each item in the list
         ViewGroup linearLayout = view.findViewById(R.id.adj_new_list);
@@ -194,7 +197,6 @@ public class AdjAutoFrag extends Fragment
     private void submit() {
         JSONObject data = new JSONObject();
         try {
-            data.put("sessionId", User.sessionId);
             data.put("adjList", adjArray);
         } catch (JSONException e) {
             e.printStackTrace();
