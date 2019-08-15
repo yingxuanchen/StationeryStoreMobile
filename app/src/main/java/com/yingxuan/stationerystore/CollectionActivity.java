@@ -213,7 +213,13 @@ public class CollectionActivity extends AppCompatActivity
                     DisbursementDetails d;
                     d = itemlist.get(i);
                     EditText item = findViewById(IDList.get(i));
-                    int qty=Integer.parseInt(item.getText().toString());
+                    String qtyString = item.getText().toString().trim();
+                    if (qtyString.equals("")) {
+                        Toast.makeText(this,"Quantity cannot be empty",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    int qty=Integer.parseInt(qtyString);
                     if(qty<0){
                         Toast.makeText(this,"Quantity cannot be negative",Toast.LENGTH_LONG).show();
                         return;
