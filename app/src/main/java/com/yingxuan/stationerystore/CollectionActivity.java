@@ -3,6 +3,7 @@ package com.yingxuan.stationerystore;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -179,6 +180,7 @@ public class CollectionActivity extends AppCompatActivity
                     }else{
                         EditText editView = new EditText(this);
                         editView.setText(Integer.toString(d.getQtyRetrieved()));
+                        editView.setInputType(InputType.TYPE_CLASS_NUMBER);
                         editView.setId(View.generateViewId());
                         IDList.add(editView.getId());
                         tableRow.addView(editView, 3,textLayoutParams1);
@@ -220,10 +222,6 @@ public class CollectionActivity extends AppCompatActivity
                     }
 
                     int qty=Integer.parseInt(qtyString);
-                    if(qty<0){
-                        Toast.makeText(this,"Quantity cannot be negative",Toast.LENGTH_LONG).show();
-                        return;
-                    }
                     if(qty>d.getQtyRetrieved()){
                         Toast.makeText(this,"Quantity collected cannot be more than delivered",Toast.LENGTH_LONG).show();
                         return;
