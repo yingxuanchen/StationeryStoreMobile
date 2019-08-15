@@ -108,6 +108,8 @@ public class AdjAutoFrag extends Fragment
 
         try {
             String status = jsonObj.getString("status");
+
+            // after successfully submitting adjustment voucher, redirect to Adjustment Index Fragment
             if (status.equals("ok")) {
                 Toast.makeText(getContext(), R.string.toast_adj,
                         Toast.LENGTH_LONG).show();
@@ -117,6 +119,14 @@ public class AdjAutoFrag extends Fragment
                 Fragment frag = new AdjIndexFrag();
                 trans.replace(R.id.frag, frag);
                 trans.commit();
+            }
+            // if out quantity is more than quantity in warehouse, display error message
+            else if (status.equals("Invalid quantity")) {
+                Toast.makeText(getContext(), R.string.error_adj_qty_invalid,
+                        Toast.LENGTH_LONG).show();
+
+                errorMsgView.setText(R.string.error_adj_qty_invalid);
+                errorMsgView.setVisibility(View.VISIBLE);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -144,7 +154,7 @@ public class AdjAutoFrag extends Fragment
                 EditText editView = view.getRootView().findViewWithTag(adj.getItemId() + "_qty");
                 String qtyString = editView.getText().toString().trim();
                 if (qtyString.equals("")) {
-                    errorMsgView.setText(getString(R.string.error_adj_qty_empty));
+                    errorMsgView.setText(R.string.error_adj_qty_empty);
                     errorMsgView.setVisibility(View.VISIBLE);
                     return;
                 }

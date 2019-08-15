@@ -98,6 +98,7 @@
     <string name="error_adj_no_reason">Reason cannot be empty</string>
     <string name="error_adj_no_type">Please select the type of adjustment</string>
     <string name="error_adj_qty_empty">Quantity cannot be empty</string>
+    <string name="error_adj_qty_invalid">Adjustment quantity cannot be more than warehouse quantity</string>
 
     <!--alert dialog titles and messages-->
     <string name="dialog_retrieve_title">Retrieve Items</string>

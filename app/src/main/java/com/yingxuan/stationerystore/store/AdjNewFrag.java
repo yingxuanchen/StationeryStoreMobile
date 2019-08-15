@@ -94,10 +94,19 @@ public class AdjNewFrag extends Fragment
                     itemIds.add(itemId);
                     itemNames.add(itemName);
                 }
+
+                // Create an ArrayAdapter using the list of items and a default spinner layout
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                        android.R.layout.simple_spinner_item, itemNames);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                // Apply the adapter to the spinner
+                spinner.setAdapter(adapter);
             }
-            // after successfully submitting adjustment voucher, redirect to Adjustment Index Fragment
             else if (context.compareTo("set") == 0) {
                 String status = jsonObj.getString("status");
+
+                // after successfully submitting adjustment voucher, redirect to Adjustment Index Fragment
                 if (status.equals("ok")) {
                     Toast.makeText(getContext(), R.string.toast_adj,
                             Toast.LENGTH_LONG).show();
@@ -108,18 +117,18 @@ public class AdjNewFrag extends Fragment
                     trans.replace(R.id.frag, frag);
                     trans.commit();
                 }
+                // if out quantity is more than quantity in warehouse, display error message
+                else if (status.equals("Invalid quantity")) {
+                    Toast.makeText(getContext(), R.string.error_adj_qty_invalid,
+                            Toast.LENGTH_LONG).show();
+
+                    errorMsgView.setText(R.string.error_adj_qty_invalid);
+                    errorMsgView.setVisibility(View.VISIBLE);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        // Create an ArrayAdapter using the list of items and a default spinner layout
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_spinner_item, itemNames);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
     }
 
     // get the adjustment details, convert to JSONObject
@@ -149,7 +158,7 @@ public class AdjNewFrag extends Fragment
         EditText editView = view.getRootView().findViewById(R.id.qty_adjusted);
         String qtyString = editView.getText().toString().trim();
         if (qtyString.equals("")) {
-            errorMsgView.setText(getString(R.string.error_adj_qty_empty));
+            errorMsgView.setText(R.string.error_adj_qty_empty);
             errorMsgView.setVisibility(View.VISIBLE);
             return;
         }
