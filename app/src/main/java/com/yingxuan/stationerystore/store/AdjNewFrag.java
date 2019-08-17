@@ -154,11 +154,16 @@ public class AdjNewFrag extends Fragment
             return;
         }
 
-        // quantity cannot be 0 or empty
+        // quantity cannot be 0 or empty or more than 9999
         EditText editView = view.getRootView().findViewById(R.id.qty_adjusted);
         String qtyString = editView.getText().toString().trim();
         if (qtyString.equals("")) {
             errorMsgView.setText(R.string.error_adj_qty_empty);
+            errorMsgView.setVisibility(View.VISIBLE);
+            return;
+        }
+        if (qtyString.length() > 4) {
+            errorMsgView.setText(R.string.error_qty_big);
             errorMsgView.setVisibility(View.VISIBLE);
             return;
         }
@@ -173,7 +178,7 @@ public class AdjNewFrag extends Fragment
         editView = view.getRootView().findViewById(R.id.reason);
         reason = editView.getText().toString().trim();
         if (reason.equals("")) {
-            errorMsgView.setText(R.string.error_adj_no_reason);
+            errorMsgView.setText(R.string.error_no_reason);
             errorMsgView.setVisibility(View.VISIBLE);
             return;
         }

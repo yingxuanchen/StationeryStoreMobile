@@ -217,7 +217,11 @@ public class CollectionActivity extends AppCompatActivity
                     EditText item = findViewById(IDList.get(i));
                     String qtyString = item.getText().toString().trim();
                     if (qtyString.equals("")) {
-                        Toast.makeText(this,"Quantity cannot be empty",Toast.LENGTH_LONG).show();
+                        Toast.makeText(this,R.string.error_no_reason,Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (qtyString.length() > 4) {
+                        Toast.makeText(this,R.string.error_qty_big,Toast.LENGTH_LONG).show();
                         return;
                     }
 

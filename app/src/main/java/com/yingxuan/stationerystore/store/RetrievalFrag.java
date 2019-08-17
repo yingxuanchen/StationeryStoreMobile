@@ -205,6 +205,12 @@ public class RetrievalFrag extends Fragment
                     return;
                 }
 
+                // display error message if quantity retrieved is more than 9999
+                if (qtyString.length() > 4) {
+                    errorView.setVisibility(View.VISIBLE);
+                    return;
+                }
+
                 int qty = Integer.parseInt(qtyString);
 
                 // display error message if quantity retrieved is invalid

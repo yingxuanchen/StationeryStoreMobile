@@ -95,10 +95,13 @@
 
     <!--error messages during adjustment-->
     <string name="error_adj_qty_zero">Quantity cannot be 0</string>
-    <string name="error_adj_no_reason">Reason cannot be empty</string>
     <string name="error_adj_no_type">Please select the type of adjustment</string>
     <string name="error_adj_qty_empty">Quantity cannot be empty</string>
     <string name="error_adj_qty_invalid">Adjustment quantity cannot be more than warehouse quantity</string>
+
+    <!--error message if quantity input is wrong-->
+    <string name="error_qty_big">Quantity cannot be more than 9999</string>
+    <string name="error_no_reason">Reason cannot be empty</string>
 
     <!--alert dialog titles and messages-->
     <string name="dialog_retrieve_title">Retrieve Items</string>

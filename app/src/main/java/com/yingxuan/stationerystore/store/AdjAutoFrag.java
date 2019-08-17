@@ -25,7 +25,6 @@ import com.yingxuan.stationerystore.R;
 import com.yingxuan.stationerystore.connection.AsyncToServer;
 import com.yingxuan.stationerystore.connection.Command;
 import com.yingxuan.stationerystore.model.AdjustmentDetails;
-import com.yingxuan.stationerystore.session.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -150,11 +149,16 @@ public class AdjAutoFrag extends Fragment
             for (int i=0; i<adjDetails.size(); i++) {
                 AdjustmentDetails adj = adjDetails.get(i);
 
-                // quantity cannot be empty
+                // quantity cannot be empty or more than 9999
                 EditText editView = view.getRootView().findViewWithTag(adj.getItemId() + "_qty");
                 String qtyString = editView.getText().toString().trim();
                 if (qtyString.equals("")) {
                     errorMsgView.setText(R.string.error_adj_qty_empty);
+                    errorMsgView.setVisibility(View.VISIBLE);
+                    return;
+                }
+                if (qtyString.length() > 4) {
+                    errorMsgView.setText(R.string.error_qty_big);
                     errorMsgView.setVisibility(View.VISIBLE);
                     return;
                 }
@@ -167,7 +171,7 @@ public class AdjAutoFrag extends Fragment
                 editView = view.getRootView().findViewWithTag(adj.getItemId() + "_reason");
                 String reason = editView.getText().toString().trim();
                 if (reason.equals("")) {
-                    errorMsgView.setText(R.string.error_adj_no_reason);
+                    errorMsgView.setText(R.string.error_no_reason);
                     errorMsgView.setVisibility(View.VISIBLE);
                     return;
                 }
