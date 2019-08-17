@@ -1,5 +1,6 @@
 package com.yingxuan.stationerystore.store;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.yingxuan.stationerystore.MainActivity;
 import com.yingxuan.stationerystore.R;
 import com.yingxuan.stationerystore.connection.AsyncToServer;
 import com.yingxuan.stationerystore.connection.Command;
@@ -63,8 +65,13 @@ public class AdjIndexFrag extends Fragment
 
     @Override
     public void onServerResponse(JSONObject jsonObj) {
-        if (jsonObj == null)
+        if (jsonObj == null) {
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            // prevent user from being able to press back to access previous session
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             return;
+        }
 
         // Convert JSON to an ArrayList of adjustment vouchers
         list = new ArrayList<Adjustment>();

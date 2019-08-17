@@ -91,8 +91,13 @@ public class CollectionActivity extends AppCompatActivity
 
     @Override
     public void onServerResponse(JSONObject jsonObj) {
-        if (jsonObj == null)
+        if (jsonObj == null) {
+            Intent intent = new Intent(CollectionActivity.this, MainActivity.class);
+            // prevent user from being able to press back to access previous session
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             return;
+        }
 
         try {
             String context = (String) jsonObj.get("context");

@@ -1,6 +1,7 @@
 package com.yingxuan.stationerystore.store;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.yingxuan.stationerystore.MainActivity;
 import com.yingxuan.stationerystore.R;
 import com.yingxuan.stationerystore.connection.AsyncToServer;
 import com.yingxuan.stationerystore.connection.Command;
@@ -78,8 +80,13 @@ public class AdjDetailsFrag extends Fragment implements AsyncToServer.IServerRes
 
     @Override
     public void onServerResponse(JSONObject jsonObj) {
-        if (jsonObj == null)
+        if (jsonObj == null) {
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            // prevent user from being able to press back to access previous session
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             return;
+        }
 
         // Convert JSON to an ArrayList of adjustment details
         try {
