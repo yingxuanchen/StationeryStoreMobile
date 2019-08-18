@@ -61,13 +61,20 @@
         <item name="android:layout_marginVertical">30dp</item>
     </style>
 
-
-    <!--Retrieval Form and Adjustment Items table header-->
+    <!--Retrieval Form table header-->
     <style name="retrieval">
         <item name="android:textStyle">bold</item>
     </style>
 
     <!--Adjustment Index and Details-->
+    <style name="adj_table_header">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginVertical">4dp</item>
+        <item name="android:layout_marginHorizontal">2dp</item>
+    </style>
+
     <style name="adj_linear_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

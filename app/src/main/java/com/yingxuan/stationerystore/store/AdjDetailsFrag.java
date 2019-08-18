@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -118,27 +120,37 @@ public class AdjDetailsFrag extends Fragment implements AsyncToServer.IServerRes
             TableRow tableRow = new TableRow(appContext);
 
             // Set new table row layout parameters
-            TableLayout.LayoutParams layoutParams = new TableLayout.LayoutParams(
-                    TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(0,24,0,24);
-            tableRow.setLayoutParams(layoutParams);
+            TableRow.LayoutParams params = new TableRow.LayoutParams(
+                    TableRow.LayoutParams.MATCH_PARENT);
+            tableRow.setLayoutParams(params);
 
-            // Add a TextView in each column
-            TextView textView = new TextView(appContext);
+            // Add a TextView in each column (4 columns)
+            TextView textView;
+
+            View view = getView().findViewById(R.id.adj_table_text_view_0);
+            TableRow.LayoutParams params0 = (TableRow.LayoutParams) view.getLayoutParams();
+            view = getView().findViewById(R.id.adj_table_text_view_1);
+            TableRow.LayoutParams params1 = (TableRow.LayoutParams) view.getLayoutParams();
+            view = getView().findViewById(R.id.adj_table_text_view_2);
+            TableRow.LayoutParams params2 = (TableRow.LayoutParams) view.getLayoutParams();
+            view = getView().findViewById(R.id.adj_table_text_view_3);
+            TableRow.LayoutParams params3 = (TableRow.LayoutParams) view.getLayoutParams();
+
+            textView = new TextView(appContext);
             textView.setText(adj.getItemId());
-            tableRow.addView(textView, 0);
+            tableRow.addView(textView, 0, params0);
 
             textView = new TextView(appContext);
             textView.setText(adj.getDescription());
-            tableRow.addView(textView, 1);
+            tableRow.addView(textView, 1, params1);
 
             textView = new TextView(appContext);
             textView.setText(Integer.toString(adj.getQtyAdjusted()));
-            tableRow.addView(textView, 2);
+            tableRow.addView(textView, 2, params2);
 
             textView = new TextView(appContext);
             textView.setText(adj.getReason());
-            tableRow.addView(textView, 3);
+            tableRow.addView(textView, 3, params3);
 
             tableLayout.addView(tableRow);
         }

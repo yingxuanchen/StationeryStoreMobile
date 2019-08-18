@@ -97,9 +97,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginHorizontal="8dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/adj_details_summary">
 
@@ -114,19 +113,27 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    style="@style/retrieval"
+                    android:id="@+id/adj_table_text_view_0"
+                    style="@style/adj_table_header"
+                    android:layout_weight="1"
                     android:text="@string/adj_item_code" />
 
                 <TextView
-                    style="@style/retrieval"
+                    android:id="@+id/adj_table_text_view_1"
+                    style="@style/adj_table_header"
+                    android:layout_weight="3"
                     android:text="@string/adj_description" />
 
                 <TextView
-                    style="@style/retrieval"
+                    android:id="@+id/adj_table_text_view_2"
+                    style="@style/adj_table_header"
+                    android:layout_weight="1.5"
                     android:text="@string/adj_quantity" />
 
                 <TextView
-                    style="@style/retrieval"
+                    android:id="@+id/adj_table_text_view_3"
+                    style="@style/adj_table_header"
+                    android:layout_weight="2"
                     android:text="@string/adj_reason" />
 
             </TableRow>
